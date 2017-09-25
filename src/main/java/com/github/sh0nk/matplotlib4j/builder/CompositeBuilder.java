@@ -22,7 +22,7 @@ public class CompositeBuilder<T extends Builder> implements Builder {
         this.ownerBulder = ownerBuilder;
     }
 
-    T addToArgs(List<Number> numbers) {
+    T addToArgs(List<? extends Number> numbers) {
         args.add(numbers);
         return ownerBulder;
     }

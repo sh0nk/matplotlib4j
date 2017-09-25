@@ -8,11 +8,11 @@ import java.util.List;
  */
 public interface PlotBuilder extends Builder {
 
-    PlotBuilder add(List<Number> nums);
+    PlotBuilder add(List<? extends Number> nums);
 
-    PlotBuilder add(List<Number> x, List<Number> y);
+    PlotBuilder add(List<? extends Number> x, List<? extends Number> y);
 
-    PlotBuilder add(List<Number> x, List<Number> y, String fmt);
+    PlotBuilder add(List<? extends Number> x, List<? extends Number> y, String fmt);
 
     PlotBuilder linestyle(String arg);
 

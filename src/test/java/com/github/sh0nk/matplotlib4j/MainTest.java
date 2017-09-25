@@ -1,11 +1,18 @@
 package com.github.sh0nk.matplotlib4j;
 
+import com.google.common.collect.ContiguousSet;
+import com.google.common.collect.DiscreteDomain;
+import com.google.common.collect.Range;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 
 public class MainTest {
 
@@ -26,6 +33,24 @@ public class MainTest {
             .label("label")
             .linestyle("--");
         plt.title("Title!");
+        plt.legend();
+        plt.show();
+    }
+
+
+    @Test
+    public void testPlotSin() throws IOException, PythonExecutionException {
+        List<Double> x = IntStream.range(0, 100).boxed()
+                .map(Integer::doubleValue)
+                .map(d -> d / 15).collect(Collectors.toList());
+        List<Double> y = x.stream().map(Math::sin).collect(Collectors.toList());
+
+        Plot plt = new PlotImpl(true);
+        plt.plot()
+                .add(x, y)
+                .label("label")
+                .linestyle("--");
+        plt.title("sin curve");
         plt.legend();
         plt.show();
     }

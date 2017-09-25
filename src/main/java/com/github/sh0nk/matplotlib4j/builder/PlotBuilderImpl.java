@@ -13,18 +13,18 @@ public class PlotBuilderImpl implements PlotBuilder {
     CompositeBuilder<PlotBuilder> innerBuilder = new CompositeBuilder<>(this);
 
     @Override
-    public PlotBuilder add(List<Number> x) {
+    public PlotBuilder add(List<? extends Number> x) {
         return innerBuilder.addToArgs(x);
     }
 
     @Override
-    public PlotBuilder add(List<Number> x, List<Number> y) {
+    public PlotBuilder add(List<? extends Number> x, List<? extends Number> y) {
         innerBuilder.addToArgs(x);
         return innerBuilder.addToArgs(y);
     }
 
     @Override
-    public PlotBuilder add(List<Number> x, List<Number> y, String fmt) {
+    public PlotBuilder add(List<? extends Number> x, List<? extends Number> y, String fmt) {
         innerBuilder.addToArgs(x);
         innerBuilder.addToArgs(y);
         return innerBuilder.addToArgs(fmt);
