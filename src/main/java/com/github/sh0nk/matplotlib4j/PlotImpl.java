@@ -1,9 +1,6 @@
 package com.github.sh0nk.matplotlib4j;
 
-import com.github.sh0nk.matplotlib4j.builder.Builder;
-import com.github.sh0nk.matplotlib4j.builder.PlotBuilder;
-import com.github.sh0nk.matplotlib4j.builder.PlotBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.SingleStringArgBuilderImpl;
+import com.github.sh0nk.matplotlib4j.builder.*;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Joiner;
 
@@ -35,6 +32,27 @@ public class PlotImpl implements Plot {
     @Override
     public void title(String title) {
         registeredBuilders.add(new SingleStringArgBuilderImpl("title", title));
+    }
+
+    @Override
+    public XLabelBuilder xlabel(String s) {
+        XLabelBuilder builder = new XLabelBuilderImpl(s);
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public YLabelBuilder ylabel(String s) {
+        YLabelBuilder builder = new YLabelBuilderImpl(s);
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public TextBuilder text(double x, double y, String s) {
+        TextBuilder builder = new TextBuilderImpl(x, y, s);
+        registeredBuilders.add(builder);
+        return builder;
     }
 
     @Override

@@ -1,8 +1,5 @@
 package com.github.sh0nk.matplotlib4j;
 
-import com.google.common.collect.ContiguousSet;
-import com.google.common.collect.DiscreteDomain;
-import com.google.common.collect.Range;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -11,7 +8,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
 public class MainTest {
@@ -27,11 +23,14 @@ public class MainTest {
 
     @Test
     public void testPlot() throws IOException, PythonExecutionException {
-        Plot plt = new PlotImpl(true);
+        Plot plt = new PlotImpl(false);
         plt.plot()
             .add(Arrays.asList(1.3, 2))
             .label("label")
             .linestyle("--");
+        plt.xlabel("xlabel");
+        plt.ylabel("ylabel");
+        plt.text(0.5, 0.2,"text");
         plt.title("Title!");
         plt.legend();
         plt.show();

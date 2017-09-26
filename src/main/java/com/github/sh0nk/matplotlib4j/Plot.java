@@ -1,6 +1,9 @@
 package com.github.sh0nk.matplotlib4j;
 
 import com.github.sh0nk.matplotlib4j.builder.PlotBuilder;
+import com.github.sh0nk.matplotlib4j.builder.TextBuilder;
+import com.github.sh0nk.matplotlib4j.builder.XLabelBuilder;
+import com.github.sh0nk.matplotlib4j.builder.YLabelBuilder;
 
 import java.io.IOException;
 
@@ -13,6 +16,12 @@ public interface Plot {
     void legend();
 
     void title(String title);
+
+    XLabelBuilder xlabel(String label);
+
+    YLabelBuilder ylabel(String label);
+
+    TextBuilder text(double x, double y, String s);
 
     PlotBuilder plot();
 

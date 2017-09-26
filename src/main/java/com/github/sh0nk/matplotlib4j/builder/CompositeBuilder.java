@@ -18,22 +18,28 @@ public class CompositeBuilder<T extends Builder> implements Builder {
 
     private final T ownerBulder;
 
-    CompositeBuilder(T ownerBuilder) {
+    public CompositeBuilder(T ownerBuilder) {
         this.ownerBulder = ownerBuilder;
     }
 
-    T addToArgs(List<? extends Number> numbers) {
+    public T addToArgs(List<? extends Number> numbers) {
         args.add(numbers);
         return ownerBulder;
     }
 
-    T addToArgs(String v) {
+    public T addToArgs(String v) {
         // TODO: Do it with StringBuilder on join
         args.add("\"" + v + "\"");
         return ownerBulder;
     }
 
-    T addToKwargs(String k, String v) {
+    public T addToArgs(Number n) {
+        // TODO: Do it with StringBuilder on join
+        args.add(n);
+        return ownerBulder;
+    }
+
+    public T addToKwargs(String k, String v) {
         // TODO: Do it with StringBuilder on join
         kwargs.put(k, "\"" + v + "\"");
         return ownerBulder;

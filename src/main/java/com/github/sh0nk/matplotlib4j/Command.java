@@ -1,6 +1,5 @@
 package com.github.sh0nk.matplotlib4j;
 
-import com.github.sh0nk.matplotlib4j.builder.CompositeBuilder;
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import org.slf4j.Logger;
