@@ -23,19 +23,18 @@ public class MainTest {
 
     @Test
     public void testPlot() throws IOException, PythonExecutionException {
-        Plot plt = new PlotImpl(false);
+        Plot plt = new PlotImpl(true);
         plt.plot()
             .add(Arrays.asList(1.3, 2))
             .label("label")
             .linestyle("--");
         plt.xlabel("xlabel");
         plt.ylabel("ylabel");
-        plt.text(0.5, 0.2,"text");
+        plt.text(0.5, 0.2, "text");
         plt.title("Title!");
         plt.legend();
         plt.show();
     }
-
 
     @Test
     public void testPlotSin() throws IOException, PythonExecutionException {
@@ -49,6 +48,7 @@ public class MainTest {
                 .add(x, y)
                 .label("label")
                 .linestyle("--");
+        plt.xlim(1.0, 5.0);
         plt.title("sin curve");
         plt.legend();
         plt.show();

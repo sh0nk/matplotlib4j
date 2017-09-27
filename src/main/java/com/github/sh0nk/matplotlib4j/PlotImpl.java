@@ -31,7 +31,7 @@ public class PlotImpl implements Plot {
 
     @Override
     public void title(String title) {
-        registeredBuilders.add(new SingleStringArgBuilderImpl("title", title));
+        registeredBuilders.add(new ArgsBuilderImpl("title", title));
     }
 
     @Override
@@ -46,6 +46,16 @@ public class PlotImpl implements Plot {
         YLabelBuilder builder = new YLabelBuilderImpl(s);
         registeredBuilders.add(builder);
         return builder;
+    }
+
+    @Override
+    public void xlim(Number xmin, Number xmax) {
+        registeredBuilders.add(new ArgsBuilderImpl("xlim", xmin, xmax));
+    }
+
+    @Override
+    public void ylim(Number ymin, Number ymax) {
+        registeredBuilders.add(new ArgsBuilderImpl("ylim", ymin, ymax));
     }
 
     @Override

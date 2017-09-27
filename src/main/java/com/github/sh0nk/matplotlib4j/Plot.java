@@ -21,6 +21,10 @@ public interface Plot {
 
     YLabelBuilder ylabel(String label);
 
+    void xlim(Number xmin, Number xmax);
+
+    void ylim(Number ymin, Number ymax);
+
     TextBuilder text(double x, double y, String s);
 
     PlotBuilder plot();
