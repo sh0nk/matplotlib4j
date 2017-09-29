@@ -1,9 +1,25 @@
 group 'com.github.sh0nk.matplotlib4j'
 version '1.0.0-SNAPSHOT'
 
-apply plugin: 'java'
-
 sourceCompatibility = 1.8
+
+apply plugin: 'java'
+apply plugin: "maven-publish"
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+}
 
 repositories {
     mavenCentral()
