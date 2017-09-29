@@ -1,9 +1,6 @@
 package com.github.sh0nk.matplotlib4j;
 
-import com.github.sh0nk.matplotlib4j.builder.PlotBuilder;
-import com.github.sh0nk.matplotlib4j.builder.TextBuilder;
-import com.github.sh0nk.matplotlib4j.builder.XLabelBuilder;
-import com.github.sh0nk.matplotlib4j.builder.YLabelBuilder;
+import com.github.sh0nk.matplotlib4j.builder.*;
 
 import java.io.IOException;
 
@@ -13,7 +10,7 @@ public interface Plot {
         return new PlotImpl();
     }
 
-    void legend();
+    LegendBuilder legend();
 
     void title(String title);
 

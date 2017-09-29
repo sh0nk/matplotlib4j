@@ -34,7 +34,6 @@ public class CompositeBuilder<T extends Builder> implements Builder {
     }
 
     public T addToArgs(Number n) {
-        // TODO: Do it with StringBuilder on join
         args.add(n);
         return ownerBulder;
     }
@@ -42,6 +41,17 @@ public class CompositeBuilder<T extends Builder> implements Builder {
     public T addToKwargs(String k, String v) {
         // TODO: Do it with StringBuilder on join
         kwargs.put(k, "\"" + v + "\"");
+        return ownerBulder;
+    }
+
+    public T addToKwargsWithoutQuoting(String k, String v) {
+        // TODO: Do it with StringBuilder on join
+        kwargs.put(k, v);
+        return ownerBulder;
+    }
+
+    public T addToKwargs(String k, Number n) {
+        kwargs.put(k, n);
         return ownerBulder;
     }
 
@@ -58,7 +68,9 @@ public class CompositeBuilder<T extends Builder> implements Builder {
 
         // Kwargs
         if (!kwargs.isEmpty()) {
-            sb.append(',');
+            if (!args.isEmpty()) {
+                sb.append(',');
+            }
             Joiner.on(',').withKeyValueSeparator("=").appendTo(sb, kwargs);
         }
 

@@ -12,6 +12,8 @@ import java.util.stream.IntStream;
 
 public class MainTest {
 
+    private static final boolean DRY_RUN = true;
+
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
@@ -23,7 +25,7 @@ public class MainTest {
 
     @Test
     public void testPlot() throws IOException, PythonExecutionException {
-        Plot plt = new PlotImpl(true);
+        Plot plt = new PlotImpl(DRY_RUN);
         plt.plot()
             .add(Arrays.asList(1.3, 2))
             .label("label")
@@ -43,14 +45,14 @@ public class MainTest {
                 .map(d -> d / 15).collect(Collectors.toList());
         List<Double> y = x.stream().map(Math::sin).collect(Collectors.toList());
 
-        Plot plt = new PlotImpl(true);
+        Plot plt = new PlotImpl(DRY_RUN);
         plt.plot()
                 .add(x, y)
-                .label("label")
+                .label("sin")
                 .linestyle("--");
         plt.xlim(1.0, 5.0);
         plt.title("sin curve");
-        plt.legend();
+        plt.legend().loc("upper right");
         plt.show();
     }
 

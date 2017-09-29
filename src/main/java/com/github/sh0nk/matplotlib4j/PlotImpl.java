@@ -25,8 +25,10 @@ public class PlotImpl implements Plot {
     }
 
     @Override
-    public void legend() {
-        scriptLines.add("plt.legend()");
+    public LegendBuilder legend() {
+        LegendBuilder builder = new LegendBuilderImpl();
+        registeredBuilders.add(builder);
+        return builder;
     }
 
     @Override
