@@ -4,12 +4,12 @@ A simplest way to make matplotlib feasible on your java project. Of course it is
 
 ![Screenshot](https://user-images.githubusercontent.com/6478810/31043250-bdacdd12-a5f3-11e7-88ee-0e91c851c6f7.png)
 
-## How to use?
+## How to use
 
 Here is an example. Find more examples on `MainTest.java`
 
 ```java
-    Plot plt = new PlotImpl();
+    Plot plt = Plot.create();
     plt.plot()
         .add(Arrays.asList(1.3, 2))
         .label("label")
@@ -27,7 +27,7 @@ Here is an example. Find more examples on `MainTest.java`
 Currently this project is not registered on a public repository. It is required to publish to your maven local repository first.
 
 ```bash
-gradle publishToMavenLocal
+./gradlew publishToMavenLocal
 ```
 
 Then import to your project.
