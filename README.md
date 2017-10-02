@@ -22,6 +22,16 @@ Here is an example. Find more examples on `MainTest.java`
     plt.show();
 ```
 
+## Dependency
+
+* Java 8
+* Python with Matplotlib installed
+
+It may work with almost all not too old `Python` and `Matplotlib` versions, but no guarantee. It has been tested with 
+
+* Python 2.7.10
+* Matplotlib 1.3.1
+
 ## Configure on your project
 
 Currently this project is not registered on a public repository. It is required to publish to your maven local repository first.
