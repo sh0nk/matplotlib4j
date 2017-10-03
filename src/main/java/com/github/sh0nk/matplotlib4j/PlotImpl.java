@@ -13,15 +13,18 @@ public class PlotImpl implements Plot {
     private List<Builder> registeredBuilders = new LinkedList<>();
 
     private final boolean dryRun;
+    private final PythonConfig pythonConfig;
 
-    public PlotImpl() {
-        this(false);
+    PlotImpl(PythonConfig pythonConfig, boolean dryRun) {
+        this.pythonConfig = pythonConfig;
+        this.dryRun = dryRun;
+
+        scriptLines.add("import matplotlib.pyplot as plt");
     }
 
     @VisibleForTesting
     PlotImpl(boolean dryRun) {
-        this.dryRun = dryRun;
-        scriptLines.add("import matplotlib.pyplot as plt");
+        this(PythonConfig.systemDefaultPythonConfig(), dryRun);
     }
 
     @Override
@@ -79,14 +82,14 @@ public class PlotImpl implements Plot {
      */
     @Override
     public void show() throws IOException, PythonExecutionException {
-        registeredBuilders.stream().forEach(b -> scriptLines.add(b.build()));
+        registeredBuilders.forEach(b -> scriptLines.add(b.build()));
 
         // show
         if (!dryRun) {
             scriptLines.add("plt.show()");
         }
 
-        Command command = new Command();
+        PyCommand command = new PyCommand(pythonConfig);
         command.execute(Joiner.on('\n').join(scriptLines));
     }
 }

@@ -1,5 +1,6 @@
 package com.github.sh0nk.matplotlib4j;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import org.slf4j.Logger;
@@ -7,17 +8,50 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Command {
+public class PyCommand {
+    private final PythonConfig pythonConfig;
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(Command.class);
+    public PyCommand(PythonConfig pythonConfig) {
+        this.pythonConfig = pythonConfig;
+    }
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(PyCommand.class);
 
     private final static Pattern ERROR_PAT = Pattern.compile("^.+Error:");
 
-    private void command(String... args) throws IOException, PythonExecutionException {
-        ProcessBuilder pb = new ProcessBuilder(Lists.asList("python", args));
+    private List<String> buildCommandArgs(String scriptPath) {
+        StringBuilder shell = new StringBuilder();
+        if (!Strings.isNullOrEmpty(pythonConfig.getPyenv())) {
+            shell.append("pyenv shell ").append(pythonConfig.getPyenv()).append("; ");
+
+            if (!Strings.isNullOrEmpty(pythonConfig.getVirtualenv())) {
+                shell.append("export PYENV_VIRTUALENV_DISABLE_PROMPT=1; ");
+                shell.append("pyenv activate ").append(pythonConfig.getVirtualenv()).append("; ");
+            }
+            shell.append("python ").append(scriptPath);
+        }
+
+        List<String> com;
+        if (!Strings.isNullOrEmpty(pythonConfig.getPythonBinPath())) {
+            com = Lists.newArrayList(pythonConfig.getPythonBinPath(), scriptPath);
+        } else if (shell.length() != 0) {
+            // -l: Use login shell
+            com = Lists.newArrayList("bash", "-l", "-c", shell.toString());
+        } else {
+            // system's default
+            com = Lists.newArrayList("python", scriptPath);
+        }
+
+        LOGGER.debug("Commands... : {}", com);
+        return com;
+    }
+
+    private void command(List<String> commands) throws IOException, PythonExecutionException {
+        ProcessBuilder pb = new ProcessBuilder(commands);
         Process process = pb.start();
 
         // stdout
@@ -66,7 +100,8 @@ public class Command {
 
         writeFile(pythonScript, script);
 
-        command(Paths.get(script.toURI()).toAbsolutePath().toString());
+        String scriptPath = Paths.get(script.toURI()).toAbsolutePath().toString();
+        command(buildCommandArgs(scriptPath));
         tmpDir.delete();
     }
 }

@@ -7,7 +7,11 @@ import java.io.IOException;
 public interface Plot {
 
     static Plot create() {
-        return new PlotImpl();
+        return new PlotImpl(PythonConfig.systemDefaultPythonConfig(), false);
+    }
+
+    static Plot create(PythonConfig pythonConfig) {
+        return new PlotImpl(pythonConfig, false);
     }
 
     LegendBuilder legend();

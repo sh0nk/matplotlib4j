@@ -18,12 +18,6 @@ public class MainTest {
     public ExpectedException expectedException = ExpectedException.none();
 
     @Test
-    public void testCommand() throws IOException, PythonExecutionException {
-        Command command = new Command();
-        command.execute("print('test')");
-    }
-
-    @Test
     public void testPlot() throws IOException, PythonExecutionException {
         Plot plt = new PlotImpl(DRY_RUN);
         plt.plot()
