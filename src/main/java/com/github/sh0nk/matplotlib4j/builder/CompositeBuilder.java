@@ -1,5 +1,6 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
+import com.github.sh0nk.matplotlib4j.TypeConversion;
 import com.google.common.base.Joiner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ public class CompositeBuilder<T extends Builder> implements Builder {
     }
 
     public T addToArgs(List<? extends Number> numbers) {
-        args.add(numbers);
+        args.add(TypeConversion.INSTANCE.typeSafeList(numbers));
         return ownerBulder;
     }
 
@@ -55,6 +56,11 @@ public class CompositeBuilder<T extends Builder> implements Builder {
         return ownerBulder;
     }
 
+    public T addToKwargs(String k, List<? extends Number> v) {
+        kwargs.put(k, v);
+        return ownerBulder;
+    }
+
     @Override
     public String build() {
         StringBuilder sb = new StringBuilder();
@@ -82,6 +88,6 @@ public class CompositeBuilder<T extends Builder> implements Builder {
 
     @Override
     public String getMethodName() {
-        throw new UnsupportedOperationException("CompositeBuilder doensn't have any real method.");
+        throw new UnsupportedOperationException("CompositeBuilder doesn't have any real method.");
     }
 }
