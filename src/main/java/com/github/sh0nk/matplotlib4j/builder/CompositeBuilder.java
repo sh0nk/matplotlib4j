@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CompositeBuilder<T extends Builder> implements Builder {
 
@@ -25,6 +26,11 @@ public class CompositeBuilder<T extends Builder> implements Builder {
 
     public T addToArgs(List<? extends Number> numbers) {
         args.add(TypeConversion.INSTANCE.typeSafeList(numbers));
+        return ownerBulder;
+    }
+
+    public T add2DimListToArgs(List<? extends List<? extends Number>> numbers) {
+        args.add(numbers.stream().map(TypeConversion.INSTANCE::typeSafeList).collect(Collectors.toList()));
         return ownerBulder;
     }
 

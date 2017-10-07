@@ -30,6 +30,8 @@ public interface Plot {
 
     PlotBuilder plot();
 
+    ContourBuilder contour();
+
     /**
      * matplotlib.pyplot.show(*args, **kw)
      */

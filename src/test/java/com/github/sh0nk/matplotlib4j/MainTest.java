@@ -3,6 +3,8 @@ package com.github.sh0nk.matplotlib4j;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -13,6 +15,8 @@ import java.util.stream.IntStream;
 public class MainTest {
 
     private static final boolean DRY_RUN = true;
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(MainTest.class);
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
@@ -51,6 +55,26 @@ public class MainTest {
     }
 
     @Test
+    public void testPlotContour() throws IOException, PythonExecutionException {
+        List<Double> x = NumpyUtils.linspace(-1, 1, 100);
+        List<Double> y = NumpyUtils.linspace(-1, 1, 100);
+        NumpyUtils.Grid<Double> z = NumpyUtils.meshgrid(x, y);
+        LOGGER.info("z.x {}, z.y {}", z.x, z.y);
+
+        List<List<Double>> zCalced = IntStream.range(0, z.x.size()).mapToObj(i ->
+                IntStream.range(0, z.y.size()).mapToObj(j ->
+                    z.x.get(i).get(j) * z.x.get(i).get(j) + z.y.get(i).get(j) * z.y.get(i).get(j)
+                ).collect(Collectors.toList())
+        ).collect(Collectors.toList());
+
+        Plot plt = new PlotImpl(false);
+        plt.contour().add(x, y, zCalced); //.levels(Collections.singletonList(0));
+        plt.title("contour");
+        plt.legend().loc("upper right");
+        plt.show();
+    }
+
+    @Test
     public void testThirdArgError() throws IOException, PythonExecutionException {
         expectedException.expect(PythonExecutionException.class);
 
@@ -58,6 +82,14 @@ public class MainTest {
         plt.plot().add(Arrays.asList(1.3, 2))
             .add(Arrays.asList(1.3, 2))
             .add(Arrays.asList(1.3, 2));
+        plt.show();
+    }
+
+    @Test
+    public void testNullCauseNoException() throws IOException, PythonExecutionException {
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.plot().add(Arrays.asList(1.3, 0x66, null))
+                .add(Arrays.asList(null, -3.2e-8, 1));
         plt.show();
     }
 }

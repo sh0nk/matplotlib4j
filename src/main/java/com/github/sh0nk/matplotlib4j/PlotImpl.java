@@ -77,6 +77,13 @@ public class PlotImpl implements Plot {
         return builder;
     }
 
+    @Override
+    public ContourBuilder contour() {
+        ContourBuilder builder = new ContourBuilderImpl();
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
     /**
      * matplotlib.pyplot.show(*args, **kw)
      */
