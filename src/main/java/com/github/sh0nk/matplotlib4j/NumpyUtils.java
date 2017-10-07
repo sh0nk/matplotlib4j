@@ -6,6 +6,7 @@ import com.google.common.collect.DiscreteDomain;
 import com.google.common.collect.Range;
 
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -36,6 +37,14 @@ public class NumpyUtils {
     public static class Grid<T extends Number> {
         public List<List<T>> x;
         public List<List<T>> y;
+
+        public <R> List<List<R>> calcZ(BiFunction<T, T, R> biFunction) {
+            return IntStream.range(0, x.size()).mapToObj(i ->
+                IntStream.range(0, y.size()).mapToObj(j ->
+                    biFunction.apply(x.get(i).get(j), y.get(i).get(j))
+                ).collect(Collectors.toList())
+            ).collect(Collectors.toList());
+        }
     }
 
 }

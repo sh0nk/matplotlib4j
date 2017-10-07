@@ -61,11 +61,7 @@ public class MainTest {
         NumpyUtils.Grid<Double> z = NumpyUtils.meshgrid(x, y);
         LOGGER.info("z.x {}, z.y {}", z.x, z.y);
 
-        List<List<Double>> zCalced = IntStream.range(0, z.x.size()).mapToObj(i ->
-                IntStream.range(0, z.y.size()).mapToObj(j ->
-                    z.x.get(i).get(j) * z.x.get(i).get(j) + z.y.get(i).get(j) * z.y.get(i).get(j)
-                ).collect(Collectors.toList())
-        ).collect(Collectors.toList());
+        List<List<Double>> zCalced = z.calcZ((xi, yj) -> xi * xi + yj * yj);
 
         Plot plt = new PlotImpl(false);
         plt.contour().add(x, y, zCalced); //.levels(Collections.singletonList(0));
