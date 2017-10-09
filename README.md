@@ -1,6 +1,6 @@
 # matplotlib4j
 
-A simplest way to make matplotlib feasible on your java project. Of course it is able to be imported to scala project as below. The API is designed as similar to the original matplotlib's.
+A simplest library to make matplotlib feasible on your java project. Of course it is able to be imported to scala project as below. The API is designed as similar to the original matplotlib's.
 
 ![Screenshot](https://user-images.githubusercontent.com/6478810/31043250-bdacdd12-a5f3-11e7-88ee-0e91c851c6f7.png)
 
@@ -20,6 +20,17 @@ Here is an example. Find more examples on `MainTest.java`
     plt.title("Title!");
     plt.legend();
     plt.show();
+```
+
+### Pyenv support
+
+It is possible to choose a python environment to run matplotlib with `pyenv` and `pyenv-virtualenv` support. Create `Plot` object by specifying existing names as follows.
+
+```java
+    // with pyenv name
+    Plot plt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.4.0"));
+    // with pyenv and virtualenv name
+    Plot plt = Plot.create(PythonConfig.pyenvVirtualenvConfig("anaconda3-4.4.0", "env_plot"));
 ```
 
 ## Dependency
