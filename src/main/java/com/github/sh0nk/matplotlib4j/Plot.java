@@ -32,6 +32,8 @@ public interface Plot {
 
     ContourBuilder contour();
 
+    CLabelBuilder clabel(ContourBuilder contour);
+
     /**
      * matplotlib.pyplot.show(*args, **kw)
      */

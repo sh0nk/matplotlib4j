@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ContourBuilderImpl implements ContourBuilder {
 
-    private CompositeBuilder<ContourBuilder> innerBuilder = new CompositeBuilder<>(this);
+    private final CompositeBuilder<ContourBuilder> innerBuilder = new CompositeBuilder<>(this);
 
     @Override
     public ContourBuilder add(List<? extends Number> Z) {
@@ -31,6 +31,11 @@ public class ContourBuilderImpl implements ContourBuilder {
     @Override
     public ContourBuilder levels(List<? extends Number> arg) {
         return innerBuilder.addToKwargs("levels", arg);
+    }
+
+    @Override
+    public String getRetName() {
+        return innerBuilder.getRetName();
     }
 
     @Override

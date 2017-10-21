@@ -5,10 +5,7 @@ import com.google.common.base.Joiner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CompositeBuilder<T extends Builder> implements Builder {
@@ -18,60 +15,76 @@ public class CompositeBuilder<T extends Builder> implements Builder {
     private List<Object> args = new LinkedList<>();
     private Map<String, Object> kwargs = new HashMap<>();
 
-    private final T ownerBulder;
+    private final T ownerBuilder;
+
+    // get unique return value
+    private String retName = "ret_" + UUID.randomUUID().toString().replace('-', '_');
 
     public CompositeBuilder(T ownerBuilder) {
-        this.ownerBulder = ownerBuilder;
+        this.ownerBuilder = ownerBuilder;
     }
 
     public T addToArgs(List<? extends Number> numbers) {
         args.add(TypeConversion.INSTANCE.typeSafeList(numbers));
-        return ownerBulder;
+        return ownerBuilder;
     }
 
     public T add2DimListToArgs(List<? extends List<? extends Number>> numbers) {
         args.add(numbers.stream().map(TypeConversion.INSTANCE::typeSafeList).collect(Collectors.toList()));
-        return ownerBulder;
+        return ownerBuilder;
     }
 
     public T addToArgs(String v) {
         // TODO: Do it with StringBuilder on join
         args.add("\"" + v + "\"");
-        return ownerBulder;
+        return ownerBuilder;
+    }
+
+    public T addToArgsWithoutQuoting(String v) {
+        args.add(v);
+        return ownerBuilder;
     }
 
     public T addToArgs(Number n) {
         args.add(n);
-        return ownerBulder;
+        return ownerBuilder;
     }
 
     public T addToKwargs(String k, String v) {
         // TODO: Do it with StringBuilder on join
         kwargs.put(k, "\"" + v + "\"");
-        return ownerBulder;
+        return ownerBuilder;
     }
 
     public T addToKwargsWithoutQuoting(String k, String v) {
-        // TODO: Do it with StringBuilder on join
         kwargs.put(k, v);
-        return ownerBulder;
+        return ownerBuilder;
     }
 
     public T addToKwargs(String k, Number n) {
         kwargs.put(k, n);
-        return ownerBulder;
+        return ownerBuilder;
     }
 
     public T addToKwargs(String k, List<? extends Number> v) {
         kwargs.put(k, v);
-        return ownerBulder;
+        return ownerBuilder;
+    }
+
+    public T addToKwargs(String k, boolean v) {
+        kwargs.put(k, v ? "True" : "False");
+        return ownerBuilder;
     }
 
     @Override
     public String build() {
         StringBuilder sb = new StringBuilder();
+
+        // retName
+        sb.append(retName).append(" = ");
+
         sb.append("plt.");
-        sb.append(ownerBulder.getMethodName());
+        sb.append(ownerBuilder.getMethodName());
         sb.append("(");
 
         // Args
@@ -96,4 +109,9 @@ public class CompositeBuilder<T extends Builder> implements Builder {
     public String getMethodName() {
         throw new UnsupportedOperationException("CompositeBuilder doesn't have any real method.");
     }
+
+    public String getRetName() {
+        return retName;
+    }
+
 }

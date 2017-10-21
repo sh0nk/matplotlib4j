@@ -4,15 +4,31 @@ import java.util.List;
 
 public interface ContourBuilder extends Builder {
 
+    /**
+     * Equivalent to {@code pyplot.contour(Z)}
+     *
+     * @param Z array Z
+     * @return ContourBuilder for method chain
+     */
     ContourBuilder add(List<? extends Number> Z);
 
+    /**
+     * Equivalent to {@code pyplot.contour(X, Y, Z)}
+     *
+     * @param X the x coordinate of the surface
+     * @param Y the y coordinate of the surface
+     * @param Z array Z
+     * @return ContourBuilder for method chain
+     */
     ContourBuilder add(List<? extends Number> X, List<? extends Number> Y, List<? extends List<? extends Number>> Z);
 
-    // TODO: suppport V and N
+    // TODO: support V and N
 
     ContourBuilder colors(String arg);
 
     ContourBuilder alpha(double arg);
 
     ContourBuilder levels(List<? extends Number> arg);
+
+    String getRetName();
 }

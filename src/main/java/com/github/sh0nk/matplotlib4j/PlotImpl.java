@@ -84,6 +84,13 @@ public class PlotImpl implements Plot {
         return builder;
     }
 
+    @Override
+    public CLabelBuilder clabel(ContourBuilder contour) {
+        CLabelBuilder builder = new CLabelBuilderImpl(contour);
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
     /**
      * matplotlib.pyplot.show(*args, **kw)
      */

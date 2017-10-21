@@ -1,5 +1,6 @@
 package com.github.sh0nk.matplotlib4j;
 
+import com.github.sh0nk.matplotlib4j.builder.ContourBuilder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -59,12 +60,13 @@ public class MainTest {
         List<Double> x = NumpyUtils.linspace(-1, 1, 100);
         List<Double> y = NumpyUtils.linspace(-1, 1, 100);
         NumpyUtils.Grid<Double> grid = NumpyUtils.meshgrid(x, y);
-        LOGGER.info("z.x {}, z.y {}", grid.x, grid.y);
+        LOGGER.info("grid.x {}, grid.y {}", grid.x, grid.y);
 
-        List<List<Double>> zCalced = grid.calcZ((xi, yj) -> xi * xi + yj * yj);
+        List<List<Double>> zCalced = grid.calcZ((xi, yj) -> Math.sqrt(xi * xi + yj * yj));
 
         Plot plt = new PlotImpl(DRY_RUN);
-        plt.contour().add(x, y, zCalced);
+        ContourBuilder contour = plt.contour().add(x, y, zCalced);
+        plt.clabel(contour).inline(true).fontsize(10);
         plt.title("contour");
         plt.legend().loc("upper right");
         plt.show();
