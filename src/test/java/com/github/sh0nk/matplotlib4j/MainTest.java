@@ -58,13 +58,13 @@ public class MainTest {
     public void testPlotContour() throws IOException, PythonExecutionException {
         List<Double> x = NumpyUtils.linspace(-1, 1, 100);
         List<Double> y = NumpyUtils.linspace(-1, 1, 100);
-        NumpyUtils.Grid<Double> z = NumpyUtils.meshgrid(x, y);
-        LOGGER.info("z.x {}, z.y {}", z.x, z.y);
+        NumpyUtils.Grid<Double> grid = NumpyUtils.meshgrid(x, y);
+        LOGGER.info("z.x {}, z.y {}", grid.x, grid.y);
 
-        List<List<Double>> zCalced = z.calcZ((xi, yj) -> xi * xi + yj * yj);
+        List<List<Double>> zCalced = grid.calcZ((xi, yj) -> xi * xi + yj * yj);
 
-        Plot plt = new PlotImpl(false);
-        plt.contour().add(x, y, zCalced); //.levels(Collections.singletonList(0));
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.contour().add(x, y, zCalced);
         plt.title("contour");
         plt.legend().loc("upper right");
         plt.show();

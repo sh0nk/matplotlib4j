@@ -40,7 +40,7 @@ public class NumpyUtils {
 
         public <R> List<List<R>> calcZ(BiFunction<T, T, R> biFunction) {
             return IntStream.range(0, x.size()).mapToObj(i ->
-                IntStream.range(0, y.size()).mapToObj(j ->
+                IntStream.range(0, x.get(i).size()).mapToObj(j ->
                     biFunction.apply(x.get(i).get(j), y.get(i).get(j))
                 ).collect(Collectors.toList())
             ).collect(Collectors.toList());
