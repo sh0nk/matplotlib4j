@@ -1,4 +1,4 @@
-group 'com.github.sh0nk.matplotlib4j'
+group 'com.github.sh0nk'
 version '1.0.0-SNAPSHOT'
 
 apply plugin: 'java'
