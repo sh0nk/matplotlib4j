@@ -76,7 +76,7 @@ Then import to your project.
 
 ```xml
 <dependency>
-    <groupId>com.github.sh0nk.matplotlib4j</groupId>
+    <groupId>com.github.sh0nk</groupId>
     <artifactId>matplotlib4j</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>
@@ -87,5 +87,5 @@ Then import to your project.
 Make sure that `mavenLocal()` is defined in repositories on your `build.gradle`.
 
 ```groovy
-compile 'com.github.sh0nk.matplotlib4j:matplotlib4j:1.0.0-SNAPSHOT'
+compile 'com.github.sh0nk:matplotlib4j:1.0.0-SNAPSHOT'
 ```
