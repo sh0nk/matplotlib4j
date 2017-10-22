@@ -9,17 +9,36 @@ A simplest library to make matplotlib feasible on your java project. Of course i
 Here is an example. Find more examples on `MainTest.java`
 
 ```java
-    Plot plt = Plot.create();
-    plt.plot()
-        .add(Arrays.asList(1.3, 2))
-        .label("label")
-        .linestyle("--");
-    plt.xlabel("xlabel");
-    plt.ylabel("ylabel");
-    plt.text(0.5, 0.2, "text");
-    plt.title("Title!");
-    plt.legend();
-    plt.show();
+Plot plt = Plot.create();
+plt.plot()
+    .add(Arrays.asList(1.3, 2))
+    .label("label")
+    .linestyle("--");
+plt.xlabel("xlabel");
+plt.ylabel("ylabel");
+plt.text(0.5, 0.2, "text");
+plt.title("Title!");
+plt.legend();
+plt.show();
+```
+
+Another example to draw **Contour**
+
+![Screenshot](https://user-images.githubusercontent.com/6478810/31847390-d2422f2a-b656-11e7-9fca-d503cd70a253.png)
+
+```java
+List<Double> x = NumpyUtils.linspace(-1, 1, 100);
+List<Double> y = NumpyUtils.linspace(-1, 1, 100);
+NumpyUtils.Grid<Double> grid = NumpyUtils.meshgrid(x, y);
+
+List<List<Double>> zCalced = grid.calcZ((xi, yj) -> Math.sqrt(xi * xi + yj * yj));
+
+Plot plt = Plot.create();
+ContourBuilder contour = plt.contour().add(x, y, zCalced);
+plt.clabel(contour).inline(true).fontsize(10);
+plt.title("contour");
+plt.legend().loc("upper right");
+plt.show();
 ```
 
 ### Pyenv support
@@ -27,10 +46,10 @@ Here is an example. Find more examples on `MainTest.java`
 It is possible to choose a python environment to run matplotlib with `pyenv` and `pyenv-virtualenv` support. Create `Plot` object by specifying existing names as follows.
 
 ```java
-    // with pyenv name
-    Plot plt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.4.0"));
-    // with pyenv and virtualenv name
-    Plot plt = Plot.create(PythonConfig.pyenvVirtualenvConfig("anaconda3-4.4.0", "env_plot"));
+// with pyenv name
+Plot plt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.4.0"));
+// with pyenv and virtualenv name
+Plot plt = Plot.create(PythonConfig.pyenvVirtualenvConfig("anaconda3-4.4.0", "env_plot"));
 ```
 
 ## Dependency
