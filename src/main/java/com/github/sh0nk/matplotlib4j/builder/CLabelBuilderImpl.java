@@ -25,7 +25,7 @@ public class CLabelBuilderImpl implements CLabelBuilder {
 
     @Override
     public CLabelBuilder inlineSpacing(double arg) {
-        return innerBuilder.addToKwargs("inlineSpacing", arg);
+        return innerBuilder.addToKwargs("inline_spacing", arg);
     }
 
     @Override
