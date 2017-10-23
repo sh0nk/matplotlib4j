@@ -4,7 +4,7 @@ apply plugin: "maven"
 apply plugin: "signing"
 
 group 'com.github.sh0nk'
-version '0.1.0'
+version '0.1.1-SNAPSHOT'
 archivesBaseName = "matplotlib4j"
 description = "A simple plot library for java with powerful python matplotlib"
 
