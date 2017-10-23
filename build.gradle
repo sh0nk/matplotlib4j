@@ -1,8 +1,12 @@
-group 'com.github.sh0nk'
-version '1.0.0-SNAPSHOT'
-
 apply plugin: 'java'
 apply plugin: "maven-publish"
+apply plugin: "maven"
+apply plugin: "signing"
+
+group 'com.github.sh0nk'
+version '0.1.0'
+archivesBaseName = "matplotlib4j"
+description = "A simple plot library for java with powerful python matplotlib"
 
 sourceCompatibility = 1.8
 
