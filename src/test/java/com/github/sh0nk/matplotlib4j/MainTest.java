@@ -109,8 +109,8 @@ public class MainTest {
                 .collect(Collectors.toList());
 
         Plot plt = new PlotImpl(DRY_RUN);
-        plt.hist().add(x1).add(x2);
-        plt.xlim(-5, 5);
+        plt.hist().add(x1).add(x2).color("#66DD66", "#6688FF");
+        plt.xlim(-6, 8);
         plt.title("histogram");
         plt.legend().loc("upper right");
         plt.show();

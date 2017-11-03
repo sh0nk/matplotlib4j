@@ -2,6 +2,7 @@ package com.github.sh0nk.matplotlib4j.builder;
 
 import com.github.sh0nk.matplotlib4j.kwargs.PatchBuilder;
 import com.github.sh0nk.matplotlib4j.kwargs.PatchBuilderImpl;
+import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 
 import java.util.LinkedList;
@@ -86,8 +87,9 @@ public class HistBuilderImpl implements HistBuilder {
     }
 
     @Override
-    public HistBuilder color(String arg) {
-        return innerBuilder.addToKwargs("color", arg);
+    public HistBuilder color(String... args) {
+        Preconditions.checkArgument(args.length > 0, ".color() needs to have at least one argument.");
+        return innerBuilder.addToKwargsWithoutQuoting("color", "[\"" + Joiner.on("\", \"").join(args) + "\"]");
     }
 
     @Override

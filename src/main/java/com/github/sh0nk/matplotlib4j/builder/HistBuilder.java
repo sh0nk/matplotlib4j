@@ -56,7 +56,7 @@ public interface HistBuilder extends Builder, PatchBuilder<HistBuilder> {
 
     HistBuilder log(boolean arg);
 
-    HistBuilder color(String arg);
+    HistBuilder color(String... args);
 
     HistBuilder stacked(boolean arg);
 
