@@ -16,7 +16,7 @@ public class NumpyUtils {
     public static List<Double> linspace(double start, double end, int num) {
         Preconditions.checkArgument(num >= 0);
         return ContiguousSet.create(Range.closedOpen(0, num), DiscreteDomain.integers())
-                .stream().map(x -> (double) (x  * (end - start)) / (num - 1) + start).collect(Collectors.toList());
+                .stream().map(x -> (x  * (end - start)) / (num - 1) + start).collect(Collectors.toList());
     }
 
     public static List<Double> arange(double start, double end, double step) {

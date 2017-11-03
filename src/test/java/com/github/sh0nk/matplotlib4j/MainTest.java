@@ -1,6 +1,7 @@
 package com.github.sh0nk.matplotlib4j;
 
 import com.github.sh0nk.matplotlib4j.builder.ContourBuilder;
+import com.github.sh0nk.matplotlib4j.builder.HistBuilder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -56,6 +58,18 @@ public class MainTest {
     }
 
     @Test
+    public void testPlotScatter() throws IOException, PythonExecutionException {
+        List<Double> x = NumpyUtils.linspace(-3, 3, 100);
+        List<Double> y = x.stream().map(xi -> Math.sin(xi) + Math.random()).collect(Collectors.toList());
+
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.plot().add(x, y, "o").label("sin");
+        plt.title("scatter");
+        plt.legend().loc("upper right");
+        plt.show();
+    }
+
+    @Test
     public void testPlotContour() throws IOException, PythonExecutionException {
         List<Double> x = NumpyUtils.linspace(-1, 1, 100);
         List<Double> y = NumpyUtils.linspace(-1, 1, 100);
@@ -68,6 +82,48 @@ public class MainTest {
         ContourBuilder contour = plt.contour().add(x, y, zCalced);
         plt.clabel(contour).inline(true).fontsize(10);
         plt.title("contour");
+        plt.legend().loc("upper right");
+        plt.show();
+    }
+
+    @Test
+    public void testPlotOneHistogram() throws IOException, PythonExecutionException {
+        Random rand = new Random();
+        List<Double> x = IntStream.range(0, 1000).mapToObj(i -> rand.nextGaussian())
+                .collect(Collectors.toList());
+
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.hist().add(x).orientation(HistBuilder.Orientation.horizontal);
+        plt.ylim(-5, 5);
+        plt.title("histogram");
+        plt.legend().loc("upper right");
+        plt.show();
+    }
+
+    @Test
+    public void testPlotTwoHistogram() throws IOException, PythonExecutionException {
+        Random rand = new Random();
+        List<Double> x1 = IntStream.range(0, 1000).mapToObj(i -> rand.nextGaussian())
+                .collect(Collectors.toList());
+        List<Double> x2 = IntStream.range(0, 1000).mapToObj(i -> 2 + rand.nextGaussian())
+                .collect(Collectors.toList());
+
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.hist().add(x1).add(x2);
+        plt.xlim(-5, 5);
+        plt.title("histogram");
+        plt.legend().loc("upper right");
+        plt.show();
+    }
+
+    @Test
+    public void testPlotHistogramNoXError() throws IOException, PythonExecutionException {
+        expectedException.expect(IllegalArgumentException.class);
+
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.hist();
+        plt.xlim(-5, 5);
+        plt.title("histogram");
         plt.legend().loc("upper right");
         plt.show();
     }

@@ -85,6 +85,13 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public HistBuilder hist() {
+        HistBuilder builder = new HistBuilderImpl();
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
     public CLabelBuilder clabel(ContourBuilder contour) {
         CLabelBuilder builder = new CLabelBuilderImpl(contour);
         registeredBuilders.add(builder);

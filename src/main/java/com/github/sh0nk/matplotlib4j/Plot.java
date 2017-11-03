@@ -32,6 +32,8 @@ public interface Plot {
 
     ContourBuilder contour();
 
+    HistBuilder hist();
+
     CLabelBuilder clabel(ContourBuilder contour);
 
     /**
