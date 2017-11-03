@@ -38,7 +38,7 @@ public class NumpyUtilsTest {
     public void testMeshGrid() {
         NumpyUtils.Grid<Double> expect = new NumpyUtils.Grid<>();
         expect.x = Arrays.asList(Arrays.asList(0.0, 1.0, 2.0), Arrays.asList(0.0, 1.0, 2.0));
-        expect.y = Arrays.asList(Arrays.asList(2.0, 3.0), Arrays.asList(2.0, 3.0), Arrays.asList(2.0, 3.0));
+        expect.y = Arrays.asList(Arrays.asList(2.0, 2.0, 2.0), Arrays.asList(3.0, 3.0, 3.0));
         assert2DListDouble(expect.x, NumpyUtils.meshgrid(Arrays.asList(0.0, 1.0, 2.0), Arrays.asList(2.0, 3.0)).x);
         assert2DListDouble(expect.y, NumpyUtils.meshgrid(Arrays.asList(0.0, 1.0, 2.0), Arrays.asList(2.0, 3.0)).y);
     }
