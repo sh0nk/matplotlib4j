@@ -1,8 +1,11 @@
 # matplotlib4j
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.sh0nk/matplotlib4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.sh0nk/matplotlib4j)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.sh0nk/matplotlib4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.sh0nk/matplotlib4j) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A simplest library to make matplotlib feasible on your java project. Of course it is able to be imported to scala project as below. The API is designed as similar to the original matplotlib's.
+
+A simplest interface library to enable your java project to use matplotlib.
+
+Of course it is able to be imported to scala project as below. The API is designed as similar to the original matplotlib's.
 
 ![Screenshot](https://user-images.githubusercontent.com/6478810/31043250-bdacdd12-a5f3-11e7-88ee-0e91c851c6f7.png)
 
@@ -76,7 +79,7 @@ Import to your projects as follows.
 <dependency>
     <groupId>com.github.sh0nk</groupId>
     <artifactId>matplotlib4j</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -85,7 +88,7 @@ Import to your projects as follows.
 Make sure that `mavenLocal()` is defined in repositories on your `build.gradle`.
 
 ```groovy
-compile 'com.github.sh0nk:matplotlib4j:0.1.0'
+compile 'com.github.sh0nk:matplotlib4j:0.2.0'
 ```
 
 # License
