@@ -32,15 +32,19 @@ Another example to draw **Contour**
 ![Screenshot](https://user-images.githubusercontent.com/6478810/31847390-d2422f2a-b656-11e7-9fca-d503cd70a253.png)
 
 ```java
+// Data generation
 List<Double> x = NumpyUtils.linspace(-1, 1, 100);
 List<Double> y = NumpyUtils.linspace(-1, 1, 100);
 NumpyUtils.Grid<Double> grid = NumpyUtils.meshgrid(x, y);
 
 List<List<Double>> zCalced = grid.calcZ((xi, yj) -> Math.sqrt(xi * xi + yj * yj));
 
+// Plotting
 Plot plt = Plot.create();
 ContourBuilder contour = plt.contour().add(x, y, zCalced);
-plt.clabel(contour).inline(true).fontsize(10);
+plt.clabel(contour)
+    .inline(true)
+    .fontsize(10);
 plt.title("contour");
 plt.legend().loc("upper right");
 plt.show();
@@ -64,12 +68,12 @@ Plot plt = Plot.create(PythonConfig.pyenvVirtualenvConfig("anaconda3-4.4.0", "en
 
 It may work with almost all not too old `Python` and `Matplotlib` versions, but no guarantee. It has been tested with 
 
-* Python 2.7.10
-* Matplotlib 1.3.1
+* Python 2.7.10, 3.6.1
+* Matplotlib 1.3.1, 2.0.2
 
 ## Configure on your project
 
-This library is now found on [maven central repository](http://search.maven.org/#artifactdetails%7Ccom.github.sh0nk%7Cmatplotlib4j%7C0.1.0%7Cjar).
+This library is now found on [maven central repository](http://search.maven.org/#artifactdetails%7Ccom.github.sh0nk%7Cmatplotlib4j%7C0.2.0%7Cjar).
 
 Import to your projects as follows.
 
