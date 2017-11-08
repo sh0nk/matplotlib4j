@@ -14,6 +14,8 @@ public class CompositeBuilder<T extends Builder> implements Builder {
 
     private List<Object> args = new LinkedList<>();
     private Map<String, Object> kwargs = new HashMap<>();
+    private String beforeMethodOutput = null;
+    private String afterMethodOutput = null;
 
     private final T ownerBuilder;
 
@@ -76,9 +78,20 @@ public class CompositeBuilder<T extends Builder> implements Builder {
         return ownerBuilder;
     }
 
+    public void beforeMethodOutput(String arg) {
+        beforeMethodOutput = arg;
+    }
+
+    public void afterMethodOutput(String arg) {
+        afterMethodOutput = arg;
+    }
+
     @Override
     public String build() {
         StringBuilder sb = new StringBuilder();
+        if (beforeMethodOutput != null) {
+            sb.append(beforeMethodOutput).append('\n');
+        }
 
         // retName
         sb.append(retName).append(" = ");
@@ -100,6 +113,11 @@ public class CompositeBuilder<T extends Builder> implements Builder {
         }
 
         sb.append(")");
+
+        if (afterMethodOutput != null) {
+            sb.append('\n').append(afterMethodOutput);
+        }
+
         String str = sb.toString();
         LOGGER.debug(".plot command: {}", str);
         return str;

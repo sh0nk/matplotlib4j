@@ -36,8 +36,17 @@ public interface Plot {
 
     CLabelBuilder clabel(ContourBuilder contour);
 
+    SaveFigBuilder savefig(String fname);
+
+    /**
+     * Silently execute Python script until here by builders.
+     * It is mostly useful to execute `plt.savefig()` without showing by window.
+     */
+    void executeSilently() throws IOException, PythonExecutionException;
+
     /**
      * matplotlib.pyplot.show(*args, **kw)
      */
     void show() throws IOException, PythonExecutionException;
+
 }

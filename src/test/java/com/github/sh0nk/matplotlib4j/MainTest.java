@@ -105,12 +105,12 @@ public class MainTest {
         Random rand = new Random();
         List<Double> x1 = IntStream.range(0, 1000).mapToObj(i -> rand.nextGaussian())
                 .collect(Collectors.toList());
-        List<Double> x2 = IntStream.range(0, 1000).mapToObj(i -> 2 + rand.nextGaussian())
+        List<Double> x2 = IntStream.range(0, 1000).mapToObj(i -> 4.0 + rand.nextGaussian())
                 .collect(Collectors.toList());
 
-        Plot plt = new PlotImpl(DRY_RUN);
-        plt.hist().add(x1).add(x2).color("#66DD66", "#6688FF");
-        plt.xlim(-6, 8);
+        Plot plt = new PlotImpl(false);
+        plt.hist().add(x1).add(x2).bins(20).stacked(true).color("#66DD66", "#6688FF").range(3, 5);
+        plt.xlim(-6, 10);
         plt.title("histogram");
         plt.legend().loc("upper right");
         plt.show();
@@ -144,6 +144,18 @@ public class MainTest {
         Plot plt = new PlotImpl(DRY_RUN);
         plt.plot().add(Arrays.asList(1.3, 0x66, null))
                 .add(Arrays.asList(null, -3.2e-8, 1));
+        plt.show();
+    }
+
+    @Test
+    public void testPlotTwice() throws IOException, PythonExecutionException {
+        // TODO: Check .plot() or so is not called twice on the second run script
+
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.plot().add(Arrays.asList(1.3, 2));
+        plt.title("Title!");
+        plt.legend();
+        plt.show();
         plt.show();
     }
 }

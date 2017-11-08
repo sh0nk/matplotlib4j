@@ -9,8 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PlotImpl implements Plot {
-    private List<String> scriptLines = new LinkedList<>();
     private List<Builder> registeredBuilders = new LinkedList<>();
+    private List<Builder> showBuilders = new LinkedList<>();
 
     private final boolean dryRun;
     private final PythonConfig pythonConfig;
@@ -18,8 +18,6 @@ public class PlotImpl implements Plot {
     PlotImpl(PythonConfig pythonConfig, boolean dryRun) {
         this.pythonConfig = pythonConfig;
         this.dryRun = dryRun;
-
-        scriptLines.add("import matplotlib.pyplot as plt");
     }
 
     @VisibleForTesting
@@ -98,11 +96,32 @@ public class PlotImpl implements Plot {
         return builder;
     }
 
+    @Override
+    public SaveFigBuilder savefig(String fname) {
+        SaveFigBuilder builder = new SaveFigBuilderImpl(fname);
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public void executeSilently() throws IOException, PythonExecutionException {
+        List<String> scriptLines = new LinkedList<>();
+        scriptLines.add("import matplotlib as mpl");
+        scriptLines.add("mpl.use('Agg')");
+        scriptLines.add("import matplotlib.pyplot as plt");
+        registeredBuilders.forEach(b -> scriptLines.add(b.build()));
+        showBuilders.forEach(b -> scriptLines.add(b.build()));
+        PyCommand command = new PyCommand(pythonConfig);
+        command.execute(Joiner.on('\n').join(scriptLines));
+    }
+
     /**
      * matplotlib.pyplot.show(*args, **kw)
      */
     @Override
     public void show() throws IOException, PythonExecutionException {
+        List<String> scriptLines = new LinkedList<>();
+        scriptLines.add("import matplotlib.pyplot as plt");
         registeredBuilders.forEach(b -> scriptLines.add(b.build()));
 
         // show
@@ -113,4 +132,5 @@ public class PlotImpl implements Plot {
         PyCommand command = new PyCommand(pythonConfig);
         command.execute(Joiner.on('\n').join(scriptLines));
     }
+
 }
