@@ -9,7 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PlotImpl implements Plot {
-    private List<Builder> registeredBuilders = new LinkedList<>();
+    @VisibleForTesting
+    List<Builder> registeredBuilders = new LinkedList<>();
     private List<Builder> showBuilders = new LinkedList<>();
 
     private final boolean dryRun;
@@ -131,6 +132,9 @@ public class PlotImpl implements Plot {
 
         PyCommand command = new PyCommand(pythonConfig);
         command.execute(Joiner.on('\n').join(scriptLines));
+
+        // After showing, registered plot is cleared
+        registeredBuilders.clear();
     }
 
 }

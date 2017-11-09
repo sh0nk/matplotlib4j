@@ -2,6 +2,7 @@ package com.github.sh0nk.matplotlib4j;
 
 import com.github.sh0nk.matplotlib4j.builder.ContourBuilder;
 import com.github.sh0nk.matplotlib4j.builder.HistBuilder;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -108,7 +109,7 @@ public class MainTest {
         List<Double> x2 = IntStream.range(0, 1000).mapToObj(i -> 4.0 + rand.nextGaussian())
                 .collect(Collectors.toList());
 
-        Plot plt = new PlotImpl(false);
+        Plot plt = new PlotImpl(DRY_RUN);
         plt.hist().add(x1).add(x2).bins(20).stacked(true).color("#66DD66", "#6688FF").range(3, 5);
         plt.xlim(-6, 10);
         plt.title("histogram");
@@ -148,7 +149,7 @@ public class MainTest {
     }
 
     @Test
-    public void testPlotTwice() throws IOException, PythonExecutionException {
+    public void testShowTwiceClearFirstPlot() throws IOException, PythonExecutionException {
         // TODO: Check .plot() or so is not called twice on the second run script
 
         Plot plt = new PlotImpl(DRY_RUN);
@@ -156,6 +157,8 @@ public class MainTest {
         plt.title("Title!");
         plt.legend();
         plt.show();
+
+        Assert.assertEquals(0, ((PlotImpl) plt).registeredBuilders.size());
         plt.show();
     }
 }

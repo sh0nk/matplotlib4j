@@ -1,6 +1,5 @@
 package com.github.sh0nk.matplotlib4j;
 
-import com.google.common.io.Files;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,9 +18,7 @@ public class SaveFigTest {
 
     @Test
     public void testSaveFig() throws IOException, PythonExecutionException {
-        File tmpDir = Files.createTempDir();
-        tmpDir.deleteOnExit();
-        File tmpFile = new File(tmpDir, "tmp.png");
+        File tmpFile = File.createTempFile("savefig", ".png");
         tmpFile.deleteOnExit();
 
         Plot plt = new PlotImpl(DRY_RUN);
@@ -36,12 +33,8 @@ public class SaveFigTest {
 
     @Test
     public void testSaveFigTwice() throws IOException, PythonExecutionException {
-        File tmpDir = Files.createTempDir();
-        File tmpDir2 = Files.createTempDir();
-        tmpDir.deleteOnExit();
-        tmpDir2.deleteOnExit();
-        File tmpFile = new File(tmpDir, "tmp.png");
-        File tmpFile2 = new File(tmpDir2, "tmp.png");
+        File tmpFile = File.createTempFile("savefig", ".png");
+        File tmpFile2 = File.createTempFile("savefig2", ".png");
         tmpFile.deleteOnExit();
         tmpFile2.deleteOnExit();
 
@@ -59,9 +52,7 @@ public class SaveFigTest {
 
     @Test
     public void testCallExecuteTwice() throws IOException, PythonExecutionException {
-        File tmpDir = Files.createTempDir();
-        tmpDir.deleteOnExit();
-        File tmpFile = new File(tmpDir, "tmp.png");
+        File tmpFile = File.createTempFile("savefig", ".png");
         tmpFile.deleteOnExit();
 
         Plot plt = new PlotImpl(DRY_RUN);
@@ -77,9 +68,7 @@ public class SaveFigTest {
 
     @Test
     public void testSaveFigNoImpactToShow() throws IOException, PythonExecutionException {
-        File tmpDir = Files.createTempDir();
-        tmpDir.deleteOnExit();
-        File tmpFile = new File(tmpDir, "tmp.png");
+        File tmpFile = File.createTempFile("savefig", ".png");
         tmpFile.deleteOnExit();
 
         Plot plt = new PlotImpl(DRY_RUN);
@@ -92,5 +81,24 @@ public class SaveFigTest {
 
         Assert.assertTrue(tmpFile.exists());
     }
+
+    @Test
+    public void testSaveFigAfterShowHasNoFigure() throws IOException, PythonExecutionException {
+        File tmpFile = File.createTempFile("savefig", ".png");
+        tmpFile.deleteOnExit();
+
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.plot().add(Arrays.asList(1.3, 2));
+        plt.title("Title!");
+        plt.legend();
+        plt.savefig(tmpFile.getAbsolutePath());
+        plt.show();
+
+        Assert.assertEquals(0, ((PlotImpl) plt).registeredBuilders.size());
+        plt.executeSilently();
+
+        Assert.assertTrue(tmpFile.exists());
+    }
+
 
 }
