@@ -7,7 +7,7 @@ A simplest interface library to enable your java project to use matplotlib.
 
 Of course it is able to be imported to scala project as below. The API is designed as similar to the original matplotlib's.
 
-<img src="https://user-images.githubusercontent.com/6478810/31043250-bdacdd12-a5f3-11e7-88ee-0e91c851c6f7.png" width="520px">
+<img src="https://user-images.githubusercontent.com/6478810/31043250-bdacdd12-a5f3-11e7-88ee-0e91c851c6f7.png" width="620px">
 
 
 ## How to use
@@ -28,9 +28,9 @@ plt.legend();
 plt.show();
 ```
 
-Another example to draw **Contour**
+Another example to draw **Contour**.
 
-<img src="https://user-images.githubusercontent.com/6478810/31847390-d2422f2a-b656-11e7-9fca-d503cd70a253.png" width="520px">
+<img src="https://user-images.githubusercontent.com/6478810/31847390-d2422f2a-b656-11e7-9fca-d503cd70a253.png" width="620px">
 
 ```java
 // Data generation
@@ -51,9 +51,9 @@ plt.legend().loc("upper right");
 plt.show();
 ```
 
-In addition to the interactive window opened by `.show()`, `.savefig()` is also supported. 
-Only one thing to note is that `plt.executeSilently()` triggers to output figure files after calling `.savefig()`,
-this is by design as method chain coding style.
+In addition to the interactive window opened by `.show()`, **`.savefig()`** is also supported. 
+Only one thing to note is that `plt.executeSilently()` triggers to output figure files after calling `.savefig()`.
+This is by design as method chain coding style.
 
 ```java
 Random rand = new Random();
@@ -66,12 +66,13 @@ plt.ylim(-5, 5);
 plt.title("histogram");
 plt.savefig("/tmp/histogram.png").dpi(200);
 
+// Don't miss this line to output the file!
 plt.executeSilently();
 ```
 
-This code generates the following picture.
+This code generates the following picture at `/tmp/histogram.png`.
 
-<img src="https://user-images.githubusercontent.com/6478810/32616055-c0ec5652-c5b4-11e7-9824-a1628b3b5141.png" width="520px">
+<img src="https://user-images.githubusercontent.com/6478810/32616055-c0ec5652-c5b4-11e7-9824-a1628b3b5141.png" width="620px">
 
 
 ### Pyenv support
