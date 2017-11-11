@@ -7,7 +7,8 @@ A simplest interface library to enable your java project to use matplotlib.
 
 Of course it is able to be imported to scala project as below. The API is designed as similar to the original matplotlib's.
 
-![Screenshot](https://user-images.githubusercontent.com/6478810/31043250-bdacdd12-a5f3-11e7-88ee-0e91c851c6f7.png)
+<img src="https://user-images.githubusercontent.com/6478810/31043250-bdacdd12-a5f3-11e7-88ee-0e91c851c6f7.png" width="520px">
+
 
 ## How to use
 
@@ -29,7 +30,7 @@ plt.show();
 
 Another example to draw **Contour**
 
-![Screenshot](https://user-images.githubusercontent.com/6478810/31847390-d2422f2a-b656-11e7-9fca-d503cd70a253.png)
+<img src="https://user-images.githubusercontent.com/6478810/31847390-d2422f2a-b656-11e7-9fca-d503cd70a253.png" width="520px">
 
 ```java
 // Data generation
@@ -49,6 +50,29 @@ plt.title("contour");
 plt.legend().loc("upper right");
 plt.show();
 ```
+
+In addition to the interactive window opened by `.show()`, `.savefig()` is also supported. 
+Only one thing to note is that `plt.executeSilently()` triggers to output figure files after calling `.savefig()`,
+this is by design as method chain coding style.
+
+```java
+Random rand = new Random();
+List<Double> x = IntStream.range(0, 1000).mapToObj(i -> rand.nextGaussian())
+        .collect(Collectors.toList());
+
+Plot plt = Plot.create();
+plt.hist().add(x).orientation(HistBuilder.Orientation.horizontal);
+plt.ylim(-5, 5);
+plt.title("histogram");
+plt.savefig("/tmp/histogram.png").dpi(200);
+
+plt.executeSilently();
+```
+
+This code generates the following picture.
+
+<img src="https://user-images.githubusercontent.com/6478810/32616055-c0ec5652-c5b4-11e7-9824-a1628b3b5141.png" width="520px">
+
 
 ### Pyenv support
 
@@ -73,7 +97,7 @@ It may work with almost all not too old `Python` and `Matplotlib` versions, but 
 
 ## Configure on your project
 
-This library is now found on [maven central repository](http://search.maven.org/#artifactdetails%7Ccom.github.sh0nk%7Cmatplotlib4j%7C0.2.0%7Cjar).
+This library is now found on [maven central repository](http://search.maven.org/#artifactdetails%7Ccom.github.sh0nk%7Cmatplotlib4j%7C0.3.0%7Cjar).
 
 Import to your projects as follows.
 
@@ -83,16 +107,14 @@ Import to your projects as follows.
 <dependency>
     <groupId>com.github.sh0nk</groupId>
     <artifactId>matplotlib4j</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
 </dependency>
 ```
 
 **Gradle**
 
-Make sure that `mavenLocal()` is defined in repositories on your `build.gradle`.
-
 ```groovy
-compile 'com.github.sh0nk:matplotlib4j:0.2.0'
+compile 'com.github.sh0nk:matplotlib4j:0.3.0'
 ```
 
 # License
