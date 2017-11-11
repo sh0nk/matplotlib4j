@@ -105,6 +105,16 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public void close() {
+        registeredBuilders.add(new ArgsBuilderImpl("close"));
+    }
+
+    @Override
+    public void close(String name) {
+        registeredBuilders.add(new ArgsBuilderImpl("close", name));
+    }
+
+    @Override
     public void executeSilently() throws IOException, PythonExecutionException {
         List<String> scriptLines = new LinkedList<>();
         scriptLines.add("import matplotlib as mpl");

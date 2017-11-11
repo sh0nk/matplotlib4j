@@ -15,16 +15,20 @@ public class ArgsBuilderImpl implements Builder {
     private final String key;
     List<Object> args = new LinkedList<>();
 
+    public ArgsBuilderImpl(String key) {
+        this.key = key;
+    }
+
     public ArgsBuilderImpl(String key, String arg) {
         this.key = key;
         addStringToArgs(arg);
     }
+
     public ArgsBuilderImpl(String key, String arg1, String arg2) {
         this.key = key;
         addStringToArgs(arg1);
         addStringToArgs(arg2);
     }
-
 
     public ArgsBuilderImpl(String key, Number arg) {
         this.key = key;

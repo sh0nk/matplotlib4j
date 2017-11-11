@@ -24,7 +24,6 @@ public class SaveFigTest {
         Plot plt = new PlotImpl(DRY_RUN);
         plt.plot().add(Arrays.asList(1.3, 2));
         plt.title("Title!");
-        plt.legend();
         plt.savefig(tmpFile.getAbsolutePath());
         plt.executeSilently();
 
@@ -41,8 +40,29 @@ public class SaveFigTest {
         Plot plt = new PlotImpl(DRY_RUN);
         plt.plot().add(Arrays.asList(1.3, 2));
         plt.title("Title!");
-        plt.legend();
         plt.savefig(tmpFile.getAbsolutePath());
+        plt.savefig(tmpFile2.getAbsolutePath());
+        plt.executeSilently();
+
+        Assert.assertTrue(tmpFile.exists());
+        Assert.assertTrue(tmpFile2.exists());
+    }
+
+    @Test
+    public void testSaveFigTwiceWithClose() throws IOException, PythonExecutionException {
+        File tmpFile = File.createTempFile("savefig", ".png");
+        File tmpFile2 = File.createTempFile("savefig2", ".png");
+        tmpFile.deleteOnExit();
+        tmpFile2.deleteOnExit();
+
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.plot().add(Arrays.asList(1.3, 2));
+        plt.title("Title1");
+        plt.savefig(tmpFile.getAbsolutePath());
+        plt.close();
+
+        plt.plot().add(Arrays.asList(1.3, -2));
+        plt.title("Title2");
         plt.savefig(tmpFile2.getAbsolutePath());
         plt.executeSilently();
 
@@ -58,7 +78,6 @@ public class SaveFigTest {
         Plot plt = new PlotImpl(DRY_RUN);
         plt.plot().add(Arrays.asList(1.3, 2));
         plt.title("Title!");
-        plt.legend();
         plt.savefig(tmpFile.getAbsolutePath());
         plt.executeSilently();
         plt.executeSilently();
@@ -74,7 +93,6 @@ public class SaveFigTest {
         Plot plt = new PlotImpl(DRY_RUN);
         plt.plot().add(Arrays.asList(1.3, 2));
         plt.title("Title!");
-        plt.legend();
         plt.savefig(tmpFile.getAbsolutePath());
         plt.executeSilently();
         plt.show();
@@ -90,7 +108,6 @@ public class SaveFigTest {
         Plot plt = new PlotImpl(DRY_RUN);
         plt.plot().add(Arrays.asList(1.3, 2));
         plt.title("Title!");
-        plt.legend();
         plt.savefig(tmpFile.getAbsolutePath());
         plt.show();
 

@@ -39,6 +39,16 @@ public interface Plot {
     SaveFigBuilder savefig(String fname);
 
     /**
+     * Close a figure window.
+     */
+    void close();
+
+    /**
+     * Close a figure window with name label.
+     */
+    void close(String name);
+
+    /**
      * Silently execute Python script until here by builders.
      * It is mostly useful to execute `plt.savefig()` without showing by window.
      */
