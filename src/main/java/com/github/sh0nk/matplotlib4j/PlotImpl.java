@@ -141,6 +141,11 @@ public class PlotImpl implements Plot {
     public void show() throws IOException, PythonExecutionException {
         List<String> scriptLines = new LinkedList<>();
         scriptLines.add("import numpy as np");
+        if (dryRun) {
+            // No need DISPLAY for test run
+            scriptLines.add("import matplotlib as mpl");
+            scriptLines.add("mpl.use('Agg')");
+        }
         scriptLines.add("import matplotlib.pyplot as plt");
         registeredBuilders.forEach(b -> scriptLines.add(b.build()));
 
