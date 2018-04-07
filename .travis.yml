@@ -1,4 +1,4 @@
-language: java
+language: python
 jdk:
   - oraclejdk8
 sudo: required
@@ -11,9 +11,11 @@ notifications:
 
 # Setup anaconda
 before_install:
-  # python
-  - sudo apt-get -y install python3-pip python-dev
-  - sudo pip3 install -U setuptools
+#  # python (language=java)
+#  - sudo apt-get -y install python3-pip python-dev
+#  - sudo pip3 install -U setuptools
+  # jdk (language=python)
+  - jdk_switcher use oraclejdk8
   # miniconda
   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
   - chmod +x miniconda.sh
