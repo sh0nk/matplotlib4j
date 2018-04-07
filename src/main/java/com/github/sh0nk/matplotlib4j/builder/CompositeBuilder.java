@@ -8,6 +8,12 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * {@link CompositeBuilder} handles positional arguments and keyword arguments to methods
+ * by {@link #build()} call on behalf of the ownerBuilder with a common way.
+ *
+ * @param <T> Owner builder class
+ */
 public class CompositeBuilder<T extends Builder> implements Builder {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(CompositeBuilder.class);
@@ -26,13 +32,20 @@ public class CompositeBuilder<T extends Builder> implements Builder {
         this.ownerBuilder = ownerBuilder;
     }
 
+    private String wrapWithNdArray(String listAsStr) {
+        // Change all the array_like arguments from python list to np.array because .shape is called in pcolor
+        return "np.array(" + listAsStr + ")";
+    }
+
     public T addToArgs(List<? extends Number> numbers) {
-        args.add(TypeConversion.INSTANCE.typeSafeList(numbers));
+        args.add(wrapWithNdArray(TypeConversion.INSTANCE.typeSafeList(numbers).toString()));
         return ownerBuilder;
     }
 
     public T add2DimListToArgs(List<? extends List<? extends Number>> numbers) {
-        args.add(numbers.stream().map(TypeConversion.INSTANCE::typeSafeList).collect(Collectors.toList()));
+        args.add(wrapWithNdArray(
+                numbers.stream().map(TypeConversion.INSTANCE::typeSafeList).collect(Collectors.toList()).toString()
+        ));
         return ownerBuilder;
     }
 

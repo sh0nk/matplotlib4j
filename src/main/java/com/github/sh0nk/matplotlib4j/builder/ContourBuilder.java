@@ -26,6 +26,10 @@ public interface ContourBuilder extends Builder {
 
     ContourBuilder colors(String arg);
 
+    ContourBuilder vmin(double arg);
+
+    ContourBuilder vmax(double arg);
+
     ContourBuilder alpha(double arg);
 
     ContourBuilder levels(List<? extends Number> arg);

@@ -88,6 +88,22 @@ public class MainTest {
     }
 
     @Test
+    public void testPlotPColor() throws IOException, PythonExecutionException {
+        List<Double> x = NumpyUtils.linspace(-1, 1, 100);
+        List<Double> y = NumpyUtils.linspace(-1, 1, 100);
+        NumpyUtils.Grid<Double> grid = NumpyUtils.meshgrid(x, y);
+        LOGGER.info("grid.x {}, grid.y {}", grid.x, grid.y);
+
+        List<List<Double>> cCalced = grid.calcZ((xi, yj) -> Math.sqrt(xi * xi + yj * yj));
+
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.pcolor().add(x, y, cCalced).cmap("plt.cm.Blues");
+        plt.title("pcolor");
+        plt.legend().loc("upper right");
+        plt.show();
+    }
+
+    @Test
     public void testPlotOneHistogram() throws IOException, PythonExecutionException {
         Random rand = new Random();
         List<Double> x = IntStream.range(0, 1000).mapToObj(i -> rand.nextGaussian())
@@ -161,4 +177,5 @@ public class MainTest {
         Assert.assertEquals(0, ((PlotImpl) plt).registeredBuilders.size());
         plt.show();
     }
+
 }

@@ -24,6 +24,16 @@ public class ContourBuilderImpl implements ContourBuilder {
     }
 
     @Override
+    public ContourBuilder vmin(double arg) {
+        return innerBuilder.addToKwargs("vmin", arg);
+    }
+
+    @Override
+    public ContourBuilder vmax(double arg) {
+        return innerBuilder.addToKwargs("vmax", arg);
+    }
+
+    @Override
     public ContourBuilder alpha(double arg) {
         return innerBuilder.addToKwargs("alpha", arg);
     }

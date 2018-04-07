@@ -84,6 +84,13 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public PColorBuilder pcolor() {
+        PColorBuilder builder = new PColorBuilderImpl();
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
     public HistBuilder hist() {
         HistBuilder builder = new HistBuilderImpl();
         registeredBuilders.add(builder);
@@ -117,6 +124,7 @@ public class PlotImpl implements Plot {
     @Override
     public void executeSilently() throws IOException, PythonExecutionException {
         List<String> scriptLines = new LinkedList<>();
+        scriptLines.add("import numpy as np");
         scriptLines.add("import matplotlib as mpl");
         scriptLines.add("mpl.use('Agg')");
         scriptLines.add("import matplotlib.pyplot as plt");
@@ -132,6 +140,7 @@ public class PlotImpl implements Plot {
     @Override
     public void show() throws IOException, PythonExecutionException {
         List<String> scriptLines = new LinkedList<>();
+        scriptLines.add("import numpy as np");
         scriptLines.add("import matplotlib.pyplot as plt");
         registeredBuilders.forEach(b -> scriptLines.add(b.build()));
 
