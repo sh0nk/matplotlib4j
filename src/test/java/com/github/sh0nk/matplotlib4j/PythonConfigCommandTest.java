@@ -1,6 +1,7 @@
 package com.github.sh0nk.matplotlib4j;
 
 import com.google.common.base.Joiner;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class PythonConfigCommandTest {
     }
 
     @Test
+    @Ignore("Only for local, could be supported by CI")
     public void testPyenvCommand() throws IOException, PythonExecutionException {
         PyCommand command = new PyCommand(PythonConfig.pyenvConfig("anaconda3-4.4.0"));
         command.execute("print('test')");
@@ -25,6 +27,7 @@ public class PythonConfigCommandTest {
     }
 
     @Test
+    @Ignore("Only for local, could be supported by CI")
     public void testPyenvVirtualenvCommand() throws IOException, PythonExecutionException {
         PyCommand command = new PyCommand(PythonConfig.pyenvVirtualenvConfig("anaconda3-4.4.0", "nlp-class"));
         command.execute("print('test')");
@@ -33,6 +36,7 @@ public class PythonConfigCommandTest {
     }
 
     @Test
+    @Ignore("Only for local, could be supported by CI")
     public void testPythonBinCommand() throws IOException, PythonExecutionException {
         PyCommand command = new PyCommand(PythonConfig.pythonBinPathConfig("/usr/bin/python"));
         command.execute("print('test')");
