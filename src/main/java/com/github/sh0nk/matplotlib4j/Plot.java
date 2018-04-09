@@ -1,8 +1,19 @@
 package com.github.sh0nk.matplotlib4j;
 
-import com.github.sh0nk.matplotlib4j.builder.*;
-
 import java.io.IOException;
+
+import com.github.sh0nk.matplotlib4j.builder.CLabelBuilder;
+import com.github.sh0nk.matplotlib4j.builder.ContourBuilder;
+import com.github.sh0nk.matplotlib4j.builder.HistBuilder;
+import com.github.sh0nk.matplotlib4j.builder.LegendBuilder;
+import com.github.sh0nk.matplotlib4j.builder.PColorBuilder;
+import com.github.sh0nk.matplotlib4j.builder.PlotBuilder;
+import com.github.sh0nk.matplotlib4j.builder.SaveFigBuilder;
+import com.github.sh0nk.matplotlib4j.builder.TextBuilder;
+import com.github.sh0nk.matplotlib4j.builder.XLabelBuilder;
+import com.github.sh0nk.matplotlib4j.builder.XScaleBuilder;
+import com.github.sh0nk.matplotlib4j.builder.YLabelBuilder;
+import com.github.sh0nk.matplotlib4j.builder.YScaleBuilder;
 
 public interface Plot {
 
@@ -21,6 +32,10 @@ public interface Plot {
     XLabelBuilder xlabel(String label);
 
     YLabelBuilder ylabel(String label);
+
+    XScaleBuilder xscale(String scale);
+
+    YScaleBuilder yscale(String scale);
 
     void xlim(Number xmin, Number xmax);
 

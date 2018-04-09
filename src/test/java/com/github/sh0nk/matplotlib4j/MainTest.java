@@ -1,7 +1,12 @@
 package com.github.sh0nk.matplotlib4j;
 
-import com.github.sh0nk.matplotlib4j.builder.ContourBuilder;
-import com.github.sh0nk.matplotlib4j.builder.HistBuilder;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -9,12 +14,8 @@ import org.junit.rules.ExpectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import com.github.sh0nk.matplotlib4j.builder.ContourBuilder;
+import com.github.sh0nk.matplotlib4j.builder.HistBuilder;
 
 public class MainTest {
 
@@ -29,9 +30,26 @@ public class MainTest {
     public void testPlot() throws IOException, PythonExecutionException {
         Plot plt = new PlotImpl(DRY_RUN);
         plt.plot()
-            .add(Arrays.asList(1.3, 2))
-            .label("label")
-            .linestyle("--");
+           .add(Arrays.asList(1.3, 2))
+           .label("label")
+           .linestyle("--");
+        plt.xlabel("xlabel");
+        plt.ylabel("ylabel");
+        plt.text(0.5, 0.2, "text");
+        plt.title("Title!");
+        plt.legend();
+        plt.show();
+    }
+
+    @Test
+    public void testPlotLogScale() throws IOException, PythonExecutionException {
+        Plot plt = new PlotImpl(DRY_RUN);
+        plt.plot()
+           .add(Arrays.asList(1.3, 20, 200, 300, 400, 1000), Arrays.asList(1, 4, 10, 20, 100, 800))
+           .label("label")
+           .linestyle("--");
+        plt.xscale("log");
+        plt.yscale("log");
         plt.xlabel("xlabel");
         plt.ylabel("ylabel");
         plt.text(0.5, 0.2, "text");
