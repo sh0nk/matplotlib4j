@@ -1,12 +1,8 @@
 package com.github.sh0nk.matplotlib4j;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
+import com.github.sh0nk.matplotlib4j.builder.ContourBuilder;
+import com.github.sh0nk.matplotlib4j.builder.HistBuilder;
+import com.github.sh0nk.matplotlib4j.builder.ScaleBuilder;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,8 +10,12 @@ import org.junit.rules.ExpectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.sh0nk.matplotlib4j.builder.ContourBuilder;
-import com.github.sh0nk.matplotlib4j.builder.HistBuilder;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class MainTest {
 
@@ -48,8 +48,8 @@ public class MainTest {
            .add(Arrays.asList(1.3, 20, 200, 300, 400, 1000), Arrays.asList(1, 4, 10, 20, 100, 800))
            .label("label")
            .linestyle("--");
-        plt.xscale("log");
-        plt.yscale("log");
+        plt.xscale(ScaleBuilder.Scale.log);
+        plt.yscale(ScaleBuilder.Scale.log);
         plt.xlabel("xlabel");
         plt.ylabel("ylabel");
         plt.text(0.5, 0.2, "text");

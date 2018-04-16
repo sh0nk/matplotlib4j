@@ -4,9 +4,10 @@ import com.github.sh0nk.matplotlib4j.kwargs.TextArgsBuilder;
 
 
 /**
+ * matplotlib.pyplot.xlabel(s, *args, **kwargs)
  * matplotlib.pyplot.ylabel(s, *args, **kwargs)
  */
-public interface YLabelBuilder extends Builder, TextArgsBuilder<YLabelBuilder> {
+public interface LabelBuilder extends Builder, TextArgsBuilder<LabelBuilder> {
 
 
 }

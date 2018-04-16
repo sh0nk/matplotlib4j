@@ -1,37 +1,12 @@
 package com.github.sh0nk.matplotlib4j;
 
+import com.github.sh0nk.matplotlib4j.builder.*;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Joiner;
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
-import com.github.sh0nk.matplotlib4j.builder.ArgsBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.Builder;
-import com.github.sh0nk.matplotlib4j.builder.CLabelBuilder;
-import com.github.sh0nk.matplotlib4j.builder.CLabelBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.ContourBuilder;
-import com.github.sh0nk.matplotlib4j.builder.ContourBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.HistBuilder;
-import com.github.sh0nk.matplotlib4j.builder.HistBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.LegendBuilder;
-import com.github.sh0nk.matplotlib4j.builder.LegendBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.PColorBuilder;
-import com.github.sh0nk.matplotlib4j.builder.PColorBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.PlotBuilder;
-import com.github.sh0nk.matplotlib4j.builder.PlotBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.SaveFigBuilder;
-import com.github.sh0nk.matplotlib4j.builder.SaveFigBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.TextBuilder;
-import com.github.sh0nk.matplotlib4j.builder.TextBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.XLabelBuilder;
-import com.github.sh0nk.matplotlib4j.builder.XLabelBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.XScaleBuilder;
-import com.github.sh0nk.matplotlib4j.builder.XScaleBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.YLabelBuilder;
-import com.github.sh0nk.matplotlib4j.builder.YLabelBuilderImpl;
-import com.github.sh0nk.matplotlib4j.builder.YScaleBuilder;
-import com.github.sh0nk.matplotlib4j.builder.YScaleBuilderImpl;
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Joiner;
 
 public class PlotImpl implements Plot {
     @VisibleForTesting
@@ -64,29 +39,29 @@ public class PlotImpl implements Plot {
     }
 
     @Override
-    public XLabelBuilder xlabel(String s) {
-        XLabelBuilder builder = new XLabelBuilderImpl(s);
+    public LabelBuilder xlabel(String label) {
+        LabelBuilder builder = LabelBuilderImpl.xLabelBuilder(label);
         registeredBuilders.add(builder);
         return builder;
     }
 
     @Override
-    public YLabelBuilder ylabel(String s) {
-        YLabelBuilder builder = new YLabelBuilderImpl(s);
+    public LabelBuilder ylabel(String label) {
+        LabelBuilder builder = LabelBuilderImpl.yLabelBuilder(label);
         registeredBuilders.add(builder);
         return builder;
     }
 
     @Override
-    public XScaleBuilder xscale(String scale) {
-        XScaleBuilderImpl builder = new XScaleBuilderImpl(scale);
+    public ScaleBuilder xscale(ScaleBuilder.Scale scale) {
+        ScaleBuilder builder = ScaleBuilderImpl.xScaleBuilder(scale);
         registeredBuilders.add(builder);
         return builder;
     }
 
     @Override
-    public YScaleBuilder yscale(String scale) {
-        YScaleBuilder builder = new YScaleBuilderImpl(scale);
+    public ScaleBuilder yscale(ScaleBuilder.Scale scale) {
+        ScaleBuilder builder = ScaleBuilderImpl.yScaleBuilder(scale);
         registeredBuilders.add(builder);
         return builder;
     }
