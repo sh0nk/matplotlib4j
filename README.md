@@ -76,6 +76,14 @@ This code generates the following picture at `/tmp/histogram.png`.
 
 <img src="https://user-images.githubusercontent.com/6478810/32616055-c0ec5652-c5b4-11e7-9824-a1628b3b5141.png" width="620px">
 
+### Major supported functions
+
+- plot()
+- pcolor()
+- contour()
+- hist()
+- savefig()
+- xlim(), ylim(), xscale(), yscale(), xlabel(), ylabel()
 
 ### Pyenv support
 
@@ -110,14 +118,14 @@ Import to your projects as follows.
 <dependency>
     <groupId>com.github.sh0nk</groupId>
     <artifactId>matplotlib4j</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
 </dependency>
 ```
 
 **Gradle**
 
 ```groovy
-compile 'com.github.sh0nk:matplotlib4j:0.3.0'
+compile 'com.github.sh0nk:matplotlib4j:0.4.0'
 ```
 
 # License
