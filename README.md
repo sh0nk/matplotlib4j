@@ -106,6 +106,9 @@ It may work with almost all not too old `Python` and `Matplotlib` versions, but 
 * Python 2.7.10, 3.6.1
 * Matplotlib 1.3.1, 2.0.2
 
+If it does not work on your environment, please report that through [github issue](https://github.com/sh0nk/matplotlib4j/issues/new)
+with the error message and your environment (OS, python and matplotlib versions).
+
 ## Configure on your project
 
 This library is now found on [maven central repository](http://search.maven.org/#artifactdetails%7Ccom.github.sh0nk%7Cmatplotlib4j%7C0.3.0%7Cjar).
