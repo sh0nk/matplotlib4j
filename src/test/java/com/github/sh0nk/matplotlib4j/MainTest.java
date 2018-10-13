@@ -196,4 +196,18 @@ public class MainTest {
         plt.show();
     }
 
+    @Test
+    public void testSubplots() throws IOException, PythonExecutionException {
+        Plot plt = new PlotImpl(DRY_RUN);
+
+        plt.subplot(2, 1, 1);
+        plt.plot()
+            .add(Arrays.asList(1, 2, 3), Arrays.asList(1, 4, 9));
+
+        plt.subplot(2, 1, 2);
+        plt.plot()
+            .add(Arrays.asList(1, 2, 3), Arrays.asList(1, -8, 27));
+
+        plt.show();
+    }
 }
