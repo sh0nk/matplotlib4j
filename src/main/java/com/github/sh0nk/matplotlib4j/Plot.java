@@ -44,6 +44,8 @@ public interface Plot {
 
     SaveFigBuilder savefig(String fname);
 
+    SubplotBuilder subplot(int nrows, int ncols, int index);
+
     /**
      * Close a figure window.
      */
