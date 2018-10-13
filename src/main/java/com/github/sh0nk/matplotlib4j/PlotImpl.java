@@ -126,6 +126,13 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public SubplotBuilder subplot(int nrows, int ncols, int index) {
+        SubplotBuilder builder = new SubplotBuilderImpl(nrows, ncols, index);
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
     public void close() {
         registeredBuilders.add(new ArgsBuilderImpl("close"));
     }

@@ -83,6 +83,7 @@ This code generates the following picture at `/tmp/histogram.png`.
 - contour()
 - hist()
 - savefig()
+- subplot()
 - xlim(), ylim(), xscale(), yscale(), xlabel(), ylabel()
 
 ### Pyenv support
