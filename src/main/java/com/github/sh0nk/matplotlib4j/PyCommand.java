@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -88,7 +89,7 @@ public class PyCommand {
     }
 
     private void writeFile(String pythonScript, File script) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(script)));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(script), StandardCharsets.UTF_8));
         bw.write(pythonScript);
         bw.close();
     }
