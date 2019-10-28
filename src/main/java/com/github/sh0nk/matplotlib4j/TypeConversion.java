@@ -1,6 +1,7 @@
 package com.github.sh0nk.matplotlib4j;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public enum TypeConversion {
@@ -16,5 +17,9 @@ public enum TypeConversion {
                 return x;
             }
         }).collect(Collectors.toList());
+    }
+
+    public String toSafeDouble(Double d) {
+        return String.format(Locale.US, "%.6f", d);
     }
 }

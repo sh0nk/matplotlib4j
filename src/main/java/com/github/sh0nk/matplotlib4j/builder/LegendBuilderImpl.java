@@ -1,5 +1,7 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
+import com.github.sh0nk.matplotlib4j.TypeConversion;
+
 public class LegendBuilderImpl implements LegendBuilder {
 
     private CompositeBuilder<LegendBuilder> innerBuilder = new CompositeBuilder<>(this);
@@ -16,7 +18,8 @@ public class LegendBuilderImpl implements LegendBuilder {
 
     @Override
     public LegendBuilder loc(double x, double y) {
-        return innerBuilder.addToKwargsWithoutQuoting("loc", String.format("(%d, %d)", x, y));
+        return innerBuilder.addToKwargsWithoutQuoting("loc", String.format("(%s, %s)",
+                TypeConversion.INSTANCE.toSafeDouble(x), TypeConversion.INSTANCE.toSafeDouble(y)));
     }
 
     @Override
