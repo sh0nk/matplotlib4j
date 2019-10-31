@@ -19,7 +19,7 @@ public enum TypeConversion {
         }).collect(Collectors.toList());
     }
 
-    public String toSafeDouble(Double d) {
+    public String toSafeDouble(double d) {
         return String.format(Locale.US, "%.6f", d);
     }
 }
