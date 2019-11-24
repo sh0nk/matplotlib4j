@@ -59,6 +59,11 @@ public class PlotBuilderImpl implements PlotBuilder {
     }
 
     @Override
+    public PlotBuilder color(String arg) {
+        return line2DBuilder.color(arg);
+    }
+
+    @Override
     public String build() {
         return innerBuilder.build();
     }

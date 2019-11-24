@@ -37,4 +37,9 @@ public class Line2DBuilderImpl<T extends Builder> implements Line2DBuilder<T> {
         return innerBuilder.addToKwargs("label", arg);
     }
 
+    @Override
+    public T color(String arg) {
+        return innerBuilder.addToKwargs("color", arg);
+    }
+
 }
