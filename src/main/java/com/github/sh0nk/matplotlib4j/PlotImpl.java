@@ -34,6 +34,11 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public void figure(String windowTitle) {
+        registeredBuilders.add(new ArgsBuilderImpl("figure", windowTitle));
+    }
+
+    @Override
     public void title(String title) {
         registeredBuilders.add(new ArgsBuilderImpl("title", title));
     }
