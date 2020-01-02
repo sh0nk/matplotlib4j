@@ -16,6 +16,12 @@ public interface Plot {
 
     LegendBuilder legend();
 
+    /**
+     * This renews a figure. Make sure that this has to be put before adding plots.
+     * Unless that, a new figure window will be open.
+     */
+    void figure(String windowTitle);
+
     void title(String title);
 
     LabelBuilder xlabel(String label);
