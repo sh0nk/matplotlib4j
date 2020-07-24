@@ -102,7 +102,8 @@ Plot plt = Plot.create(PythonConfig.pyenvVirtualenvConfig("anaconda3-4.4.0", "en
 * Java 8
 * Python with Matplotlib installed
 
-It may work with almost all not too old `Python` and `Matplotlib` versions, but no guarantee. It has been tested with 
+It may work with almost all not too old `Python` and `Matplotlib` versions, but no guarantee. It has been tested
+on MacOS with
 
 * Python 2.7.10, 3.6.1
 * Matplotlib 1.3.1, 2.0.2
