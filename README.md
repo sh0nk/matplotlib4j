@@ -97,6 +97,15 @@ Plot plt = Plot.create(PythonConfig.pyenvConfig("anaconda3-4.4.0"));
 Plot plt = Plot.create(PythonConfig.pyenvVirtualenvConfig("anaconda3-4.4.0", "env_plot"));
 ```
 
+### Other way to specify your "python" environment
+
+Also direct path to python binary is also supported. For example this way can be used if your python runtime is installed 
+by `poetry` and `venv`.
+
+```java
+Plot plt = Plot.create(PythonConfig.pythonBinPathConfig("/Users/sh0nk/my_repos/.venv/bin/python"));
+```
+
 ## Dependency
 
 * Java 8
