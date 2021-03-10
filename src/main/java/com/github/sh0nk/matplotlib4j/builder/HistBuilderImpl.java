@@ -1,5 +1,6 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
+import com.github.sh0nk.matplotlib4j.TypeConversion;
 import com.github.sh0nk.matplotlib4j.kwargs.PatchBuilder;
 import com.github.sh0nk.matplotlib4j.kwargs.PatchBuilderImpl;
 import com.google.common.base.Joiner;
@@ -33,7 +34,8 @@ public class HistBuilderImpl implements HistBuilder {
 
     @Override
     public HistBuilder range(double lower, double upper) {
-        return innerBuilder.addToKwargsWithoutQuoting("range", String.format("(%f, %f)", lower, upper));
+        return innerBuilder.addToKwargsWithoutQuoting("range", String.format("(%s, %s)",
+                        TypeConversion.INSTANCE.toSafeDouble(lower), TypeConversion.INSTANCE.toSafeDouble(upper)));
     }
 
     @Override
