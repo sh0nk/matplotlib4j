@@ -8,9 +8,9 @@ public interface Line2DBuilder<T extends Builder> extends KwargsBuilder {
 
     T ls(String arg);
 
-    T linewidth(String arg);
+    T linewidth(double arg);
 
-    T lw(String arg);
+    T lw(double arg);
 
     T label(String arg);
 

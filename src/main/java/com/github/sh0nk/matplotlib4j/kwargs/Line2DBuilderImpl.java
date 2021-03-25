@@ -23,12 +23,12 @@ public class Line2DBuilderImpl<T extends Builder> implements Line2DBuilder<T> {
     }
 
     @Override
-    public T linewidth(String arg) {
+    public T linewidth(double arg) {
         return lw(arg);
     }
 
     @Override
-    public T lw(String arg) {
+    public T lw(double arg) {
         return innerBuilder.addToKwargs("lw", arg);
     }
 
