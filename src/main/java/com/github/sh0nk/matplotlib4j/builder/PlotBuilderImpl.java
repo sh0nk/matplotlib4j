@@ -44,12 +44,12 @@ public class PlotBuilderImpl implements PlotBuilder {
     }
 
     @Override
-    public PlotBuilder linewidth(String arg) {
+    public PlotBuilder linewidth(double arg) {
         return line2DBuilder.linewidth(arg);
     }
 
     @Override
-    public PlotBuilder lw(String arg) {
+    public PlotBuilder lw(double arg) {
         return line2DBuilder.lw(arg);
     }
 

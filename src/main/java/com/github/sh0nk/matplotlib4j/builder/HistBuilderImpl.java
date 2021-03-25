@@ -108,12 +108,12 @@ public class HistBuilderImpl implements HistBuilder {
     }
 
     @Override
-    public HistBuilder linewidth(String arg) {
+    public HistBuilder linewidth(double arg) {
         return patchBuilder.linewidth(arg);
     }
 
     @Override
-    public HistBuilder lw(String arg) {
+    public HistBuilder lw(double arg) {
         return patchBuilder.lw(arg);
     }
 
