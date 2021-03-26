@@ -108,7 +108,7 @@ Plot plt = Plot.create(PythonConfig.pythonBinPathConfig("/Users/sh0nk/my_repos/.
 
 ## Dependency
 
-* Java 8
+* Java 8 or later
 * Python with Matplotlib installed
 
 It may work with almost all not too old `Python` and `Matplotlib` versions, but no guarantee. It has been tested
@@ -132,14 +132,14 @@ Import to your projects as follows.
 <dependency>
     <groupId>com.github.sh0nk</groupId>
     <artifactId>matplotlib4j</artifactId>
-    <version>0.4.0</version>
+    <version>0.5.0</version>
 </dependency>
 ```
 
 **Gradle**
 
 ```groovy
-compile 'com.github.sh0nk:matplotlib4j:0.4.0'
+compile 'com.github.sh0nk:matplotlib4j:0.5.0'
 ```
 
 # License
