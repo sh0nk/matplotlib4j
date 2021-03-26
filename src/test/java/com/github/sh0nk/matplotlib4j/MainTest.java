@@ -47,7 +47,8 @@ public class MainTest {
         plt.plot()
            .add(Arrays.asList(1.3, 20, 200, 300, 400, 1000), Arrays.asList(1, 4, 10, 20, 100, 800))
            .label("label")
-           .linestyle("--");
+           .linestyle("--")
+           .linewidth(2.0);
         plt.xscale(ScaleBuilder.Scale.log);
         plt.yscale(ScaleBuilder.Scale.log);
         plt.xlabel("xlabel");
