@@ -11,6 +11,10 @@ Of course it is able to be imported to scala project as below. The API is design
 
 <img src="https://user-images.githubusercontent.com/6478810/31043250-bdacdd12-a5f3-11e7-88ee-0e91c851c6f7.png" width="620px">
 
+## Tutorial
+
+Now [tutorial](/docs/tutorial.md) is under preparation to walkthrough the features.
+If you want to skim only the idea of Matplotlib4j, skip that and go to the next section: *[How to use](#how-to-use)*
 
 ## How to use
 
@@ -122,7 +126,7 @@ with the error message and your environment (OS, python and matplotlib versions)
 
 ## Configure on your project
 
-This library is now found on [maven central repository](http://search.maven.org/#artifactdetails%7Ccom.github.sh0nk%7Cmatplotlib4j%7C0.3.0%7Cjar).
+This library is now found on [maven central repository](http://search.maven.org/#artifactdetails%7Ccom.github.sh0nk%7Cmatplotlib4j%7C0.5.0%7Cjar).
 
 Import to your projects as follows.
 
