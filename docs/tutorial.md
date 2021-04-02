@@ -32,14 +32,17 @@ List<Double> C = x.stream().map(xi -> Math.cos(xi)).collect(Collectors.toList())
 List<Double> S = x.stream().map(xi -> Math.sin(xi)).collect(Collectors.toList());
 ```
 
-*Scala*
+*Scala:*
 ```scala
 import scala.jdk.CollectionConverters._
 
 val x = NumpyUtils.linspace(-Math.PI, Math.PI, 256)
-val C = x.asScala.map(xi => Math.cos(xi)).asJava
-val S = x.asScala.map(xi => Math.sin(xi)).asJava
+val C = x.asScala.map(xi => Math.cos(xi)).map(Double.box).asJava
+val S = x.asScala.map(xi => Math.sin(xi)).map(Double.box).asJava
 ```
+
+Note that in scala, converting java List to scala List is needed.
+In addition to that, boxing the elements are also required.
 
 *Kotlin:*
 ```kotlin
@@ -50,3 +53,67 @@ val S = x.stream().map { xi -> Math.sin(xi!!) }.collect(Collectors.toList())
 
 > `X` is now a numpy array with 256 values ranging from -π to +π (included). 
 > `C` is the cosine (256 values) and S is the sine (256 values).
+
+
+## Plotting with default settings
+
+<img src="images/fig1.png" width="620px">
+
+> Matplotlib comes with a set of default settings that allow customizing all kinds of properties. 
+> You can control the defaults of almost every property in matplotlib: figure size and dpi, line width, 
+> color and style, axes, axis and grid properties, text and font properties and so on.
+
+You must see that all the languages here have almost the same form of writing to handle `plt` object as below.
+
+*Original in python:*
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+C, S = np.cos(X), np.sin(X)
+
+plt.plot(X, C)
+plt.plot(X, S)
+
+plt.show()
+```
+
+*Java:*
+```java
+List<Double> x = NumpyUtils.linspace(-Math.PI, Math.PI, 256);
+List<Double> C = x.stream().map(xi -> Math.cos(xi)).collect(Collectors.toList());
+List<Double> S = x.stream().map(xi -> Math.sin(xi)).collect(Collectors.toList());
+
+Plot plt = Plot.create();
+plt.plot().add(x, C);
+plt.plot().add(x, S);
+plt.show();
+```
+
+*Scala:*
+```scala
+import scala.jdk.CollectionConverters._
+
+val x = NumpyUtils.linspace(-Math.PI, Math.PI, 256)
+val C = x.asScala.map(xi => Math.cos(xi)).map(Double.box).asJava
+val S = x.asScala.map(xi => Math.sin(xi)).map(Double.box).asJava
+
+val plt = Plot.create()
+plt.plot.add(x, C)
+plt.plot.add(x, S)
+plt.show();
+```
+
+*Kotlin:*
+```kotlin
+val x = NumpyUtils.linspace(-Math.PI, Math.PI, 256)
+val C = x.stream().map { xi -> Math.cos(xi!!) }.collect(Collectors.toList())
+val S = x.stream().map { xi -> Math.sin(xi!!) }.collect(Collectors.toList())
+
+val plt = Plot.create()
+plt.plot().add(x, C)
+plt.plot().add(x, S)
+plt.show()
+```
+
