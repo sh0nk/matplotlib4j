@@ -47,8 +47,8 @@ In addition to that, boxing the elements are also required.
 *Kotlin:*
 ```kotlin
 val x = NumpyUtils.linspace(-Math.PI, Math.PI, 256)
-val C = x.stream().map { xi -> Math.cos(xi!!) }.collect(Collectors.toList())
-val S = x.stream().map { xi -> Math.sin(xi!!) }.collect(Collectors.toList())
+val C = x.map { xi -> Math.cos(xi!!) }.toList()
+val S = x.map { xi -> Math.sin(xi!!) }.toList()
 ```
 
 > `X` is now a numpy array with 256 values ranging from -π to +π (included). 
@@ -108,8 +108,8 @@ plt.show();
 *Kotlin:*
 ```kotlin
 val x = NumpyUtils.linspace(-Math.PI, Math.PI, 256)
-val C = x.stream().map { xi -> Math.cos(xi!!) }.collect(Collectors.toList())
-val S = x.stream().map { xi -> Math.sin(xi!!) }.collect(Collectors.toList())
+val C = x.map { xi -> Math.cos(xi!!) }.toList()
+val S = x.map { xi -> Math.sin(xi!!) }.toList()
 
 val plt = Plot.create()
 plt.plot().add(x, C)
