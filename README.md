@@ -11,7 +11,7 @@ Of course it is able to be imported to scala project as below. The API is design
 
 <img src="https://user-images.githubusercontent.com/6478810/31043250-bdacdd12-a5f3-11e7-88ee-0e91c851c6f7.png" width="620px">
 
-## Tutorial
+## [Tutorial](/docs/tutorial.md)
 
 Now [tutorial](/docs/tutorial.md) is under preparation to walkthrough the features.
 If you want to skim only the idea of Matplotlib4j, skip that and go to the next section: *[How to use](#how-to-use)*
