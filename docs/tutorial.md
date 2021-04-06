@@ -102,7 +102,7 @@ val S = x.asScala.map(xi => Math.sin(xi)).map(Double.box).asJava
 val plt = Plot.create()
 plt.plot.add(x, C)
 plt.plot.add(x, S)
-plt.show();
+plt.show()
 ```
 
 *Kotlin:*
@@ -117,3 +117,42 @@ plt.plot().add(x, S)
 plt.show()
 ```
 
+
+## Changing colors and line widths
+
+<img src="images/fig2.png" width="620px">
+
+> First step, we want to have the cosine in blue and the sine in red and a slighty thicker line 
+> for both of them. We'll also slightly alter the figure size to make it more horizontal.
+
+*Original in python:*
+```python
+...
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
+plt.plot(X, S, color="red",  linewidth=2.5, linestyle="-")
+...
+```
+
+*Java:*
+```java
+...
+plt.plot().add(x, C).color("blue").linewidth(2.5).linestyle("-");
+plt.plot().add(x, S).color("red").linewidth(2.5).linestyle("-");
+...
+```
+
+*Scala:*
+```scala
+...
+plt.plot().add(x, C).color("blue").linewidth(2.5).linestyle("-")
+plt.plot().add(x, S).color("red").linewidth(2.5).linestyle("-")
+...
+```
+
+*Kotlin:*
+```kotlin
+...
+plt.plot().add(x, C).color("blue").linewidth(2.5).linestyle("-")
+plt.plot().add(x, S).color("red").linewidth(2.5).linestyle("-")
+...
+```
