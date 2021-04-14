@@ -144,8 +144,8 @@ plt.plot().add(x, S).color("red").linewidth(2.5).linestyle("-");
 *Scala:*
 ```scala
 ...
-plt.plot().add(x, C).color("blue").linewidth(2.5).linestyle("-")
-plt.plot().add(x, S).color("red").linewidth(2.5).linestyle("-")
+plt.plot.add(x, C).color("blue").linewidth(2.5).linestyle("-")
+plt.plot.add(x, S).color("red").linewidth(2.5).linestyle("-")
 ...
 ```
 
@@ -154,5 +154,44 @@ plt.plot().add(x, S).color("red").linewidth(2.5).linestyle("-")
 ...
 plt.plot().add(x, C).color("blue").linewidth(2.5).linestyle("-")
 plt.plot().add(x, S).color("red").linewidth(2.5).linestyle("-")
+...
+```
+
+
+## Setting limits
+
+<img src="images/fig3.png" width="620px">
+
+> Current limits of the figure are a bit too tight and we want to make some space in order to clearly see all data points.
+  
+*Original in python:*
+```python
+...
+plt.xlim(X.min() * 1.1, X.max() * 1.1)
+plt.ylim(C.min() * 1.1, C.max() * 1.1)
+...
+```
+
+*Java:*
+```java
+...
+plt.xlim(Collections.min(x) * 1.1, Collections.max(x) * 1.1);
+plt.ylim(Collections.min(C) * 1.1, Collections.max(C) * 1.1);
+...
+```
+
+*Scala:*
+```scala
+...
+plt.xlim(x.asScala.min * 1.1, x.asScala.max * 1.1)
+plt.ylim(C.asScala.min * 1.1, C.asScala.max * 1.1)
+...
+```
+
+*Kotlin:*
+```kotlin
+...
+plt.xlim(x.min()!! * 1.1, x.max()!! * 1.1)
+plt.ylim(C.min()!! * 1.1, C.max()!! * 1.1)
 ...
 ```
