@@ -6,6 +6,7 @@ import com.github.sh0nk.matplotlib4j.kwargs.TextArgsBuilderImpl;
 public class TextBuilderImpl implements TextBuilder {
 
     private CompositeBuilder<TextBuilder> innerBuilder = new CompositeBuilder<>(this);
+    // TODO: Add kwargs with textBuilder
     private TextArgsBuilder<TextBuilder> textBuilder = new TextArgsBuilderImpl<>(innerBuilder);
 
     public TextBuilderImpl(double x, double y, String s) {

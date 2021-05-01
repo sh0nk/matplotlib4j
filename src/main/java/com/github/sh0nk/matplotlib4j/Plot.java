@@ -3,6 +3,7 @@ package com.github.sh0nk.matplotlib4j;
 import com.github.sh0nk.matplotlib4j.builder.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface Plot {
 
@@ -35,6 +36,10 @@ public interface Plot {
     void xlim(Number xmin, Number xmax);
 
     void ylim(Number ymin, Number ymax);
+
+    TicksBuilder xticks(List<? extends Number> ticks);
+
+    TicksBuilder yticks(List<? extends Number> ticks);
 
     TextBuilder text(double x, double y, String s);
 

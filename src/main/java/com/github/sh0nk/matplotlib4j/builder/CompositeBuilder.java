@@ -37,8 +37,8 @@ public class CompositeBuilder<T extends Builder> implements Builder {
         return "np.array(" + listAsStr + ")";
     }
 
-    public T addToArgs(List<? extends Number> numbers) {
-        args.add(wrapWithNdArray(TypeConversion.INSTANCE.typeSafeList(numbers).toString()));
+    public T addToArgs(List<?> objs) {
+        args.add(wrapWithNdArray(TypeConversion.INSTANCE.typeSafeList(objs).toString()));
         return ownerBuilder;
     }
 

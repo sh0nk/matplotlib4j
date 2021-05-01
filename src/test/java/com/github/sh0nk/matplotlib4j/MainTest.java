@@ -72,6 +72,8 @@ public class MainTest {
                 .label("sin")
                 .linestyle("--");
         plt.xlim(1.0, 5.0);
+        plt.xticks(Arrays.asList(Math.PI / 2, Math.PI, Math.PI * 3 / 2))
+                .labels(Arrays.asList("$\\pi/2$", "$\\pi$", "$3\\pi/2$"));
         plt.title("sin curve");
         plt.legend().loc("upper right");
         plt.show();
