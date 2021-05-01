@@ -82,6 +82,20 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public TicksBuilder xticks(List<? extends Number> ticks) {
+        TicksBuilder builder = TicksBuilderImpl.xTicksBuilder(ticks);
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public TicksBuilder yticks(List<? extends Number> ticks) {
+        TicksBuilder builder = TicksBuilderImpl.yTicksBuilder(ticks);
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
     public TextBuilder text(double x, double y, String s) {
         TextBuilder builder = new TextBuilderImpl(x, y, s);
         registeredBuilders.add(builder);

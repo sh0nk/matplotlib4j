@@ -8,10 +8,12 @@ public enum TypeConversion {
 
     private final static String PYTHON_NONE = "None";
 
-    public List<Object> typeSafeList(List<? extends Number> orgList) {
+    public List<Object> typeSafeList(List<?> orgList) {
         return orgList.stream().map(x -> {
             if (x == null) {
                 return PYTHON_NONE;
+            } else if (x instanceof String) {
+                return "\"" + x + "\"";
             } else {
                 return x;
             }
