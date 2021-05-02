@@ -195,3 +195,44 @@ plt.xlim(x.min()!! * 1.1, x.max()!! * 1.1)
 plt.ylim(C.min()!! * 1.1, C.max()!! * 1.1)
 ...
 ```
+
+
+## Setting ticks
+
+<img src="images/fig4.png" width="620px">
+
+> Current ticks are not ideal because they do not show the interesting values (+/-π,+/-π/2) for sine and cosine. We'll change them such that they show only these values.
+
+> :warning: `.xticks()` and `.yticks()` are supported in `>=0.6.0`
+
+*Original in python:*
+```python
+...
+plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi])
+plt.yticks([-1, 0, +1])
+...
+```
+
+*Java:*
+```java
+...
+plt.xticks(Arrays.asList(-Math.PI, -Math.PI / 2, 0, Math.PI / 2, Math.PI));
+plt.yticks(Arrays.asList(-1, 0, 1));
+...
+```
+
+*Scala:*
+```scala
+...
+plt.xticks(Seq(-Math.PI, -Math.PI / 2, 0.0, Math.PI / 2, Math.PI).map(Double.box).asJava)
+plt.yticks(Seq(-1.0, 0.0, 1.1).map(Double.box).asJava)
+...
+```
+
+*Kotlin:*
+```kotlin
+...
+plt.xticks(listOf(-Math.PI, -Math.PI / 2, 0, Math.PI / 2, Math.PI))
+plt.yticks(listOf(-1, 0, 1))
+...
+```
