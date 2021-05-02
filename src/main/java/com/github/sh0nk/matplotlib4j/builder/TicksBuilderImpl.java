@@ -15,13 +15,15 @@ public class TicksBuilderImpl implements TicksBuilder {
     private List<String> labels;
 
     public TicksBuilderImpl(List<? extends Number> ticks, String methodName) {
+        // Add labels without ticks causes an error, that's why made ticks as mandatory parameter
+        // matplotlib.units.ConversionError: Failed to convert value(s) to axis units: ['a', 'b']
         this.methodName = methodName;
         innerBuilder.addToArgs(ticks);
     }
 
     @Override
     public TicksBuilder labels(List<String> labels) {
-        this.labels = labels;
+        innerBuilder.addToArgs(labels);
         return this;
     }
 
@@ -35,11 +37,6 @@ public class TicksBuilderImpl implements TicksBuilder {
 
     @Override
     public String build() {
-        if (labels != null) {
-            // Add labels without ticks causes an error, that's why made ticks as default mandatory parameter
-            // matplotlib.units.ConversionError: Failed to convert value(s) to axis units: ['a', 'b']
-            innerBuilder.addToArgs(labels);
-        }
         return innerBuilder.build();
     }
 
