@@ -236,3 +236,53 @@ plt.xticks(listOf(-Math.PI, -Math.PI / 2, 0, Math.PI / 2, Math.PI))
 plt.yticks(listOf(-1, 0, 1))
 ...
 ```
+
+
+## Setting tick labels
+
+<img src="images/fig5.png" width="620px">
+
+> Ticks are now properly placed but their label is not very explicit. We could guess that 3.142 is π but it would be better to make it explicit. When we set tick values, we can also provide a corresponding label in the second argument list. Note that we'll use latex to allow for nice rendering of the label.
+
+> :warning: `.xticks()` and `.yticks()` are supported in `>=0.6.0`
+
+*Original in python:*
+```python
+...
+plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi],
+          [r'$-\pi$', r'$-\pi/2$', r'$0$', r'$+\pi/2$', r'$+\pi$'])
+
+plt.yticks([-1, 0, +1],
+          [r'$-1$', r'$0$', r'$+1$'])
+...
+```
+
+*Java:*
+```java
+...
+plt.xticks(Arrays.asList(-Math.PI, -Math.PI / 2, 0, Math.PI / 2, Math.PI))
+        .labels(Arrays.asList("$-\\pi$", "$-\\pi/2$", "$0$", "$+\\pi/2$", "$+\\pi$"));
+plt.yticks(Arrays.asList(-1, 0, 1))
+        .labels(Arrays.asList("$-1$", "$0$", "$1$"));
+...
+```
+
+*Scala:*
+```scala
+...
+plt.xticks(Seq(-Math.PI, -Math.PI / 2, 0.0, Math.PI / 2, Math.PI).map(Double.box).asJava)
+  .labels(Seq("$-\\pi$", "$-\\pi/2$", "$0$", "$+\\pi/2$", "$+\\pi$").asJava)
+plt.yticks(Seq(-1.0, 0.0, 1.1).map(Double.box).asJava)
+  .labels(Seq("$-1$", "$0$", "$1$").asJava)
+...
+```
+
+*Kotlin:*
+```kotlin
+...
+plt.xticks(listOf(-Math.PI, -Math.PI / 2, 0, Math.PI / 2, Math.PI))
+        .labels(listOf("$-\\pi$", "$-\\pi/2$", "$0$", "$+\\pi/2$", "$+\\pi$"))
+plt.yticks(listOf(-1, 0, 1))
+        .labels(listOf("$-1$", "$0$", "$1$"))
+...
+```
