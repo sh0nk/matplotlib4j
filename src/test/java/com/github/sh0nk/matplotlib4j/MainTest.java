@@ -178,10 +178,10 @@ public class MainTest {
     }
 
     @Test
-    public void testNullCauseNoException() throws IOException, PythonExecutionException {
+    public void testBoundaryValuesCauseNoException() throws IOException, PythonExecutionException {
         Plot plt = new PlotImpl(DRY_RUN);
-        plt.plot().add(Arrays.asList(1.3, 0x66, null))
-                .add(Arrays.asList(null, -3.2e-8, 1));
+        plt.plot().add(Arrays.asList(1.3, 0x66, null, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY))
+                .add(Arrays.asList(null, -3.2e-8, 1, Double.NaN, Double.NaN));
         plt.show();
     }
 

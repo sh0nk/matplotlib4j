@@ -14,9 +14,22 @@ public enum TypeConversion {
                 return PYTHON_NONE;
             } else if (x instanceof String) {
                 return "\"" + x + "\"";
-            } else {
-                return x;
+            } else if (x instanceof Double) {
+                Double v = (Double) x;
+                if (Double.isInfinite(v)) {
+                    return v > 0 ? "np.inf" : "-np.inf";
+                } else if (Double.isNaN(v)) {
+                    return "np.nan";
+                }
+            } else if (x instanceof Float) {
+                Float v = (Float) x;
+                if (Float.isInfinite(v)) {
+                    return v > 0 ? "np.inf" : "-np.inf";
+                } else if (Float.isNaN(v)) {
+                    return "np.nan";
+                }
             }
+            return x;
         }).collect(Collectors.toList());
     }
 }
