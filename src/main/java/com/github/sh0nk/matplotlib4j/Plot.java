@@ -15,6 +15,8 @@ public interface Plot {
         return new PlotImpl(pythonConfig, false);
     }
 
+    GridBuilder grid();
+
     LegendBuilder legend();
 
     /**

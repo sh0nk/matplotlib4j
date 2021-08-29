@@ -44,6 +44,13 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public GridBuilder grid() {
+        GridBuilder builder = new GridBuilderImpl();
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
     public LabelBuilder xlabel(String label) {
         LabelBuilder builder = LabelBuilderImpl.xLabelBuilder(label);
         registeredBuilders.add(builder);

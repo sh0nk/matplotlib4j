@@ -1,6 +1,7 @@
 package com.github.sh0nk.matplotlib4j;
 
 import com.github.sh0nk.matplotlib4j.builder.ContourBuilder;
+import com.github.sh0nk.matplotlib4j.builder.GridBuilder;
 import com.github.sh0nk.matplotlib4j.builder.HistBuilder;
 import com.github.sh0nk.matplotlib4j.builder.ScaleBuilder;
 import org.junit.Assert;
@@ -210,6 +211,18 @@ public class MainTest {
         plt.subplot(2, 1, 2);
         plt.plot()
             .add(Arrays.asList(1, 2, 3), Arrays.asList(1, -8, 27));
+
+        plt.show();
+    }
+
+    @Test
+    public void testGrid()  throws IOException, PythonExecutionException {
+        Plot plt = new PlotImpl(DRY_RUN);
+
+        plt.plot()
+                .add(Arrays.asList(1, 2, 3), Arrays.asList(1, 4, 9));
+
+        plt.grid().axis(GridBuilder.AxisType.both).which(GridBuilder.WhichType.minor).b(true);
 
         plt.show();
     }

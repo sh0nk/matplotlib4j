@@ -3,8 +3,8 @@ apply plugin: "maven-publish"
 apply plugin: "maven"
 apply plugin: "signing"
 
-group 'com.github.sh0nk'
-version '0.5.1-SNAPSHOT'
+group 'io.github.daniel-tucano'
+version '0.5.1'
 archivesBaseName = "matplotlib4j"
 description = "Matplotlib for java: A simple graph plot library for java with powerful python matplotlib"
 
