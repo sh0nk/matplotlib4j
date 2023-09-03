@@ -45,6 +45,10 @@ public interface Plot {
 
     TextBuilder text(double x, double y, String s);
 
+    AxLineBuilder axvline();
+
+    AxLineBuilder axhline();
+
     PlotBuilder plot();
 
     ContourBuilder contour();

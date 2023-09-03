@@ -110,6 +110,20 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public AxLineBuilder axvline() {
+        AxLineBuilder builder = new AxLineBuilderImpl("v", "x");
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public AxLineBuilder axhline() {
+        AxLineBuilder builder = new AxLineBuilderImpl("h", "y");
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
     public PlotBuilder plot() {
         PlotBuilder builder = new PlotBuilderImpl();
         registeredBuilders.add(builder);
