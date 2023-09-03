@@ -89,13 +89,13 @@ public class PyCommand {
     }
 
     private void writeFile(String pythonScript, File script) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(script), StandardCharsets.UTF_8));
+        BufferedWriter bw = Files.newWriter(script, StandardCharsets.UTF_8);
         bw.write(pythonScript);
         bw.close();
     }
 
     public void execute(String pythonScript) throws IOException, PythonExecutionException {
-        File tmpDir = Files.createTempDir();
+        File tmpDir = java.nio.file.Files.createTempDirectory("matplotlib4j").toFile();
         tmpDir.deleteOnExit();
         File script = new File(tmpDir, "exec.py");
 
