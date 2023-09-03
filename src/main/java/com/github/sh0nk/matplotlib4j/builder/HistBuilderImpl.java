@@ -124,7 +124,7 @@ public class HistBuilderImpl implements HistBuilder {
 
     @Override
     public String build() {
-        Preconditions.checkArgument(xList.size() > 0, ".add() is needed to be called at least once.");
+        Preconditions.checkArgument(!xList.isEmpty(), ".add() is needed to be called at least once.");
         innerBuilder.addToArgsWithoutQuoting(xList.toString());
         return innerBuilder.build();
     }
