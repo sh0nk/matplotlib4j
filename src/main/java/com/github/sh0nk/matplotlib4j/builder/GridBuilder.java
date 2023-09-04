@@ -20,10 +20,10 @@ public interface GridBuilder extends Builder, TextArgsBuilder<GridBuilder> {
         y
     }
 
-    GridBuilder b (Boolean bol);
+    GridBuilder visible(Boolean bol);
 
-    GridBuilder which (WhichType arg);
+    GridBuilder which(WhichType arg);
 
-    GridBuilder axis (AxisType arg);
+    GridBuilder axis(AxisType arg);
 
 }

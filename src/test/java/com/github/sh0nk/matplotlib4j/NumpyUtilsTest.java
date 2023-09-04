@@ -1,18 +1,13 @@
 package com.github.sh0nk.matplotlib4j;
 
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class NumpyUtilsTest {
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void testLinspace() throws Exception {
@@ -23,8 +18,9 @@ public class NumpyUtilsTest {
 
     @Test
     public void testLinspaceFail() throws Exception {
-        expectedException.expect(IllegalArgumentException.class);
-        assertListDouble(Arrays.asList(10.0, 7.0, 4.0, 1.0), NumpyUtils.linspace(10, -1, -3));
+        Assert.assertThrows(IllegalArgumentException.class, () -> {
+            assertListDouble(Arrays.asList(10.0, 7.0, 4.0, 1.0), NumpyUtils.linspace(10, -1, -3));
+        });
     }
 
     @Test

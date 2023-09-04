@@ -1,13 +1,13 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
-public class GridBuilderImpl implements GridBuilder{
+public class GridBuilderImpl implements GridBuilder {
 
     private CompositeBuilder<GridBuilder> innerBuilder = new CompositeBuilder<>(this);
 
     // -------------------------------- Optional Arguments --------------------------------
     @Override
-    public GridBuilder b(Boolean bol) {
-        innerBuilder.addToKwargs("b", bol);
+    public GridBuilder visible(Boolean bol) {
+        innerBuilder.addToKwargs("visible", bol);
         return this;
     }
 
