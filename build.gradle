@@ -2,8 +2,8 @@ apply plugin: 'java'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-group 'io.github.daniel-tucano'
-version '0.5.1'
+group 'com.github.sh0nk'
+version '0.5.1-SNAPSHOT'
 description = 'Matplotlib for Java: A simple graph plot library for Java using matplotlib for Python'
 
 base {
