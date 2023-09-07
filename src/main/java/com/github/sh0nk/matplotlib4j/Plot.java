@@ -57,6 +57,8 @@ public interface Plot {
 
     HistBuilder hist();
 
+    ScatterBuilder scatter();
+
     CLabelBuilder clabel(ContourBuilder contour);
 
     SaveFigBuilder savefig(String fname);

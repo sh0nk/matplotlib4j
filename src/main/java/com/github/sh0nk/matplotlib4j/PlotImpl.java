@@ -152,6 +152,13 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public ScatterBuilder scatter() {
+        ScatterBuilder builder = new ScatterBuilderImpl();
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
     public CLabelBuilder clabel(ContourBuilder contour) {
         CLabelBuilder builder = new CLabelBuilderImpl(contour);
         registeredBuilders.add(builder);
