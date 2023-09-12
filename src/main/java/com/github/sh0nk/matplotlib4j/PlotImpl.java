@@ -152,6 +152,13 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public BarBuilder bar() {
+        BarBuilder builder = new BarBuilderImpl();
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
     public ScatterBuilder scatter() {
         ScatterBuilder builder = new ScatterBuilderImpl();
         registeredBuilders.add(builder);

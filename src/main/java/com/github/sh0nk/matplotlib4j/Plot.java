@@ -57,6 +57,8 @@ public interface Plot {
 
     HistBuilder hist();
 
+    BarBuilder bar();
+
     ScatterBuilder scatter();
 
     CLabelBuilder clabel(ContourBuilder contour);
