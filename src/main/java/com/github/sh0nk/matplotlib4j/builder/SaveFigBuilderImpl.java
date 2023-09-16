@@ -1,5 +1,7 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
+import java.util.List;
+
 public class SaveFigBuilderImpl implements SaveFigBuilder {
 
     private final CompositeBuilder<SaveFigBuilder> innerBuilder = new CompositeBuilder<>(this);
@@ -46,6 +48,31 @@ public class SaveFigBuilderImpl implements SaveFigBuilder {
     @Override
     public SaveFigBuilder bboxInches(double arg) {
         return innerBuilder.addToKwargs("bboxInches", arg);
+    }
+
+    @Override
+    public SaveFigBuilder addToKwargs(String k, String v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
+    public SaveFigBuilder addToKwargsWithoutQuoting(String k, String v) {
+        return innerBuilder.addToKwargsWithoutQuoting(k, v);
+    }
+
+    @Override
+    public SaveFigBuilder addToKwargs(String k, Number n) {
+        return innerBuilder.addToKwargs(k, n);
+    }
+
+    @Override
+    public SaveFigBuilder addToKwargs(String k, List<? extends Number> v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
+    public SaveFigBuilder addToKwargs(String k, boolean v) {
+        return innerBuilder.addToKwargs(k, v);
     }
 
     @Override

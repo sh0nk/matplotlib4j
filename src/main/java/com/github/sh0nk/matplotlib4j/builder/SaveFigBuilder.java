@@ -1,9 +1,11 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
+import com.github.sh0nk.matplotlib4j.kwargs.KwArgsBuilder;
+
 /**
  * matplotlib.pyplot.savefig(fname, **kwargs)
  */
-public interface SaveFigBuilder extends Builder {
+public interface SaveFigBuilder extends Builder, KwArgsBuilder<SaveFigBuilder> {
 
     enum Orientation {
         horizontal,

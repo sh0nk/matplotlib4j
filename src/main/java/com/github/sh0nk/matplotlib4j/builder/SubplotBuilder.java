@@ -1,4 +1,6 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
-public interface SubplotBuilder extends Builder {
+import com.github.sh0nk.matplotlib4j.kwargs.KwArgsBuilder;
+
+public interface SubplotBuilder extends Builder, KwArgsBuilder<SubplotBuilder> {
 }

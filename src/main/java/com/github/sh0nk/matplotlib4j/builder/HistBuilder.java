@@ -1,5 +1,6 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
+import com.github.sh0nk.matplotlib4j.kwargs.KwArgsBuilder;
 import com.github.sh0nk.matplotlib4j.kwargs.PatchBuilder;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * matplotlib.pyplot.hist(x, **kwargs)
  */
-public interface HistBuilder extends Builder, PatchBuilder<HistBuilder> {
+public interface HistBuilder extends Builder, PatchBuilder<HistBuilder>, KwArgsBuilder<HistBuilder> {
 
     enum HistType {
         bar,

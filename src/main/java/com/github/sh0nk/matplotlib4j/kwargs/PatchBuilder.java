@@ -2,7 +2,7 @@ package com.github.sh0nk.matplotlib4j.kwargs;
 
 import com.github.sh0nk.matplotlib4j.builder.Builder;
 
-public interface PatchBuilder<T extends Builder> extends KwargsBuilder {
+public interface PatchBuilder<T extends Builder> {
 
     T linestyle(String arg);
 

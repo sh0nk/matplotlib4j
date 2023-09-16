@@ -1,8 +1,9 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
+import com.github.sh0nk.matplotlib4j.kwargs.KwArgsBuilder;
 import java.util.List;
 
-public interface ContourBuilder extends Builder {
+public interface ContourBuilder extends Builder, KwArgsBuilder<ContourBuilder> {
 
     /**
      * Equivalent to {@code pyplot.contour(Z)}

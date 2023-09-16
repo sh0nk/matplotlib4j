@@ -27,6 +27,16 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public CustomBuilder cmd(String key) {
+        return new CustomBuilderImpl(key);
+    }
+
+    @Override
+    public CustomBuilder cmd(String methodPrefix, String key, Boolean returns) {
+        return new CustomBuilderImpl(methodPrefix, key, returns);
+    }
+
+    @Override
     public LegendBuilder legend() {
         LegendBuilder builder = new LegendBuilderImpl();
         registeredBuilders.add(builder);

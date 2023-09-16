@@ -1,5 +1,6 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
+import com.github.sh0nk.matplotlib4j.kwargs.KwArgsBuilder;
 import com.github.sh0nk.matplotlib4j.kwargs.Line2DBuilder;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * matplotlib.pyplot.scatter(*args, **kwargs)
  */
-public interface ScatterBuilder extends Builder {
+public interface ScatterBuilder extends Builder, KwArgsBuilder<ScatterBuilder> {
 
     ScatterBuilder add(List<? extends Number> x);
 

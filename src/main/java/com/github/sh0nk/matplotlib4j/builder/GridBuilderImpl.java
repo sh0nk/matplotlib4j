@@ -2,6 +2,7 @@ package com.github.sh0nk.matplotlib4j.builder;
 
 import com.github.sh0nk.matplotlib4j.kwargs.Line2DBuilder;
 import com.github.sh0nk.matplotlib4j.kwargs.Line2DBuilderImpl;
+import java.util.List;
 
 public class GridBuilderImpl implements GridBuilder {
 
@@ -57,7 +58,30 @@ public class GridBuilderImpl implements GridBuilder {
         return line2DBuilder.color(arg);
     }
 
-    // TODO("Add kwargs")
+    @Override
+    public GridBuilder addToKwargs(String k, String v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
+    public GridBuilder addToKwargsWithoutQuoting(String k, String v) {
+        return innerBuilder.addToKwargsWithoutQuoting(k, v);
+    }
+
+    @Override
+    public GridBuilder addToKwargs(String k, Number n) {
+        return innerBuilder.addToKwargs(k, n);
+    }
+
+    @Override
+    public GridBuilder addToKwargs(String k, List<? extends Number> v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
+    public GridBuilder addToKwargs(String k, boolean v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
 
     @Override
     public String build() {

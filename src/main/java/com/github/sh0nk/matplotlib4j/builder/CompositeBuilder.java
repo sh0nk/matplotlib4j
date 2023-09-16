@@ -1,6 +1,7 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
 import com.github.sh0nk.matplotlib4j.TypeConversion;
+import com.github.sh0nk.matplotlib4j.kwargs.KwArgsBuilder;
 import com.google.common.base.Joiner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
  *
  * @param <T> Owner builder class
  */
-public class CompositeBuilder<T extends Builder> implements Builder {
+public class CompositeBuilder<T extends Builder> implements Builder, KwArgsBuilder<T> {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(CompositeBuilder.class);
 
@@ -107,9 +108,10 @@ public class CompositeBuilder<T extends Builder> implements Builder {
         }
 
         // retName
-        sb.append(retName).append(" = ");
+        if (ownerBuilder.returns())
+            sb.append(retName).append(" = ");
 
-        sb.append("plt.");
+        sb.append(ownerBuilder.getMethodPrefix());
         sb.append(ownerBuilder.getMethodName());
         sb.append("(");
 

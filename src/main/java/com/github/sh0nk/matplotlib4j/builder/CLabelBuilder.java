@@ -1,6 +1,8 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
-public interface CLabelBuilder extends Builder {
+import com.github.sh0nk.matplotlib4j.kwargs.KwArgsBuilder;
+
+public interface CLabelBuilder extends Builder, KwArgsBuilder<CLabelBuilder> {
 
     CLabelBuilder fontsize(String arg);
 

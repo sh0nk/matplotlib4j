@@ -64,6 +64,31 @@ public class PlotBuilderImpl implements PlotBuilder {
     }
 
     @Override
+    public PlotBuilder addToKwargs(String k, String v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
+    public PlotBuilder addToKwargsWithoutQuoting(String k, String v) {
+        return innerBuilder.addToKwargsWithoutQuoting(k, v);
+    }
+
+    @Override
+    public PlotBuilder addToKwargs(String k, Number n) {
+        return innerBuilder.addToKwargs(k, n);
+    }
+
+    @Override
+    public PlotBuilder addToKwargs(String k, List<? extends Number> v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
+    public PlotBuilder addToKwargs(String k, boolean v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
     public String build() {
         return innerBuilder.build();
     }
