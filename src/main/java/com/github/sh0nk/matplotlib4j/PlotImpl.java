@@ -28,12 +28,16 @@ public class PlotImpl implements Plot {
 
     @Override
     public CustomBuilder cmd(String key) {
-        return new CustomBuilderImpl(key);
+        CustomBuilder builder = new CustomBuilderImpl(key);
+        registeredBuilders.add(builder);
+        return builder;
     }
 
     @Override
     public CustomBuilder cmd(String methodPrefix, String key, Boolean returns) {
-        return new CustomBuilderImpl(methodPrefix, key, returns);
+        CustomBuilder builder = new CustomBuilderImpl(methodPrefix, key, returns);
+        registeredBuilders.add(builder);
+        return builder;
     }
 
     @Override
