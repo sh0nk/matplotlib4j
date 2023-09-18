@@ -27,15 +27,22 @@ public class PlotImpl implements Plot {
     }
 
     @Override
-    public CustomBuilder cmd(String key) {
-        CustomBuilder builder = new CustomBuilderImpl(key);
+    public CustomBuilder py(String cmd) {
+        CustomBuilder builder = new CustomBuilderImpl(cmd);
         registeredBuilders.add(builder);
         return builder;
     }
 
     @Override
-    public CustomBuilder cmd(String methodPrefix, String key, Boolean returns) {
-        CustomBuilder builder = new CustomBuilderImpl(methodPrefix, key, returns);
+    public CustomCmdBuilder cmd(String key) {
+        CustomCmdBuilder builder = new CustomCmdBuilderImpl(key);
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public CustomCmdBuilder cmd(String methodPrefix, String key, Boolean returns) {
+        CustomCmdBuilder builder = new CustomCmdBuilderImpl(methodPrefix, key, returns);
         registeredBuilders.add(builder);
         return builder;
     }

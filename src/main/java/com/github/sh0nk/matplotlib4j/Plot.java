@@ -15,9 +15,11 @@ public interface Plot {
         return new PlotImpl(pythonConfig, false);
     }
 
-    CustomBuilder cmd(String key);
+    CustomBuilder py(String cmd);
 
-    CustomBuilder cmd(String methodPrefix, String key, Boolean returns);
+    CustomCmdBuilder cmd(String key);
+
+    CustomCmdBuilder cmd(String methodPrefix, String key, Boolean returns);
 
     GridBuilder grid();
 
