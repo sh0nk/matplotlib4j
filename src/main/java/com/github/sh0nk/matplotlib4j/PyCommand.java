@@ -2,7 +2,7 @@ package com.github.sh0nk.matplotlib4j;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import com.google.common.io.Files;
+import java.nio.file.Files;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -89,13 +89,13 @@ public class PyCommand {
     }
 
     private void writeFile(String pythonScript, File script) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(script), StandardCharsets.UTF_8));
+        BufferedWriter bw = Files.newBufferedWriter(script.toPath(), StandardCharsets.UTF_8);
         bw.write(pythonScript);
         bw.close();
     }
 
     public void execute(String pythonScript) throws IOException, PythonExecutionException {
-        File tmpDir = Files.createTempDir();
+        File tmpDir = Files.createTempDirectory("matplotlib4j").toFile();
         tmpDir.deleteOnExit();
         File script = new File(tmpDir, "exec.py");
 

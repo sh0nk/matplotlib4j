@@ -49,6 +49,31 @@ public class PColorBuilderImpl implements PColorBuilder {
     }
 
     @Override
+    public PColorBuilder addToKwargs(String k, String v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
+    public PColorBuilder addToKwargsWithoutQuoting(String k, String v) {
+        return innerBuilder.addToKwargsWithoutQuoting(k, v);
+    }
+
+    @Override
+    public PColorBuilder addToKwargs(String k, Number n) {
+        return innerBuilder.addToKwargs(k, n);
+    }
+
+    @Override
+    public PColorBuilder addToKwargs(String k, List<? extends Number> v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
+    public PColorBuilder addToKwargs(String k, boolean v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
     public String build() {
         return innerBuilder.build();
     }

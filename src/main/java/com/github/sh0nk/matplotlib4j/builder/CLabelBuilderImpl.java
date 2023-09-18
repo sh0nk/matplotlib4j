@@ -1,5 +1,7 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
+import java.util.List;
+
 public class CLabelBuilderImpl implements CLabelBuilder {
 
     private final CompositeBuilder<CLabelBuilder> innerBuilder = new CompositeBuilder<>(this);
@@ -46,6 +48,31 @@ public class CLabelBuilderImpl implements CLabelBuilder {
     @Override
     public CLabelBuilder useClabeltext(boolean arg) {
         return innerBuilder.addToKwargs("use_clabeltext", arg);
+    }
+
+    @Override
+    public CLabelBuilder addToKwargs(String k, String v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
+    public CLabelBuilder addToKwargsWithoutQuoting(String k, String v) {
+        return innerBuilder.addToKwargsWithoutQuoting(k, v);
+    }
+
+    @Override
+    public CLabelBuilder addToKwargs(String k, Number n) {
+        return innerBuilder.addToKwargs(k, n);
+    }
+
+    @Override
+    public CLabelBuilder addToKwargs(String k, List<? extends Number> v) {
+        return innerBuilder.addToKwargs(k, v);
+    }
+
+    @Override
+    public CLabelBuilder addToKwargs(String k, boolean v) {
+        return innerBuilder.addToKwargs(k, v);
     }
 
     @Override

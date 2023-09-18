@@ -15,15 +15,42 @@ public class PlotImpl implements Plot {
 
     private final boolean dryRun;
     private final PythonConfig pythonConfig;
+    private final String pplImportName;
 
-    PlotImpl(PythonConfig pythonConfig, boolean dryRun) {
+    PlotImpl(PythonConfig pythonConfig, boolean dryRun, String pplImportName) {
         this.pythonConfig = pythonConfig;
         this.dryRun = dryRun;
+        this.pplImportName = pplImportName;
+    }
+
+    PlotImpl(PythonConfig pythonConfig, boolean dryRun) {
+        this(pythonConfig, dryRun, "plt");
     }
 
     @VisibleForTesting
     PlotImpl(boolean dryRun) {
         this(PythonConfig.systemDefaultPythonConfig(), dryRun);
+    }
+
+    @Override
+    public CustomBuilder py(String cmd) {
+        CustomBuilder builder = new CustomBuilderImpl(cmd);
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public CustomCmdBuilder cmd(String key) {
+        CustomCmdBuilder builder = new CustomCmdBuilderImpl(key);
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public CustomCmdBuilder cmd(String methodPrefix, String key, Boolean returns) {
+        CustomCmdBuilder builder = new CustomCmdBuilderImpl(methodPrefix, key, returns);
+        registeredBuilders.add(builder);
+        return builder;
     }
 
     @Override
@@ -41,6 +68,13 @@ public class PlotImpl implements Plot {
     @Override
     public void title(String title) {
         registeredBuilders.add(new ArgsBuilderImpl("title", title));
+    }
+
+    @Override
+    public GridBuilder grid() {
+        GridBuilder builder = new GridBuilderImpl();
+        registeredBuilders.add(builder);
+        return builder;
     }
 
     @Override
@@ -103,6 +137,20 @@ public class PlotImpl implements Plot {
     }
 
     @Override
+    public AxLineBuilder axvline() {
+        AxLineBuilder builder = new AxLineBuilderImpl("v", "x");
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public AxLineBuilder axhline() {
+        AxLineBuilder builder = new AxLineBuilderImpl("h", "y");
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
     public PlotBuilder plot() {
         PlotBuilder builder = new PlotBuilderImpl();
         registeredBuilders.add(builder);
@@ -126,6 +174,20 @@ public class PlotImpl implements Plot {
     @Override
     public HistBuilder hist() {
         HistBuilder builder = new HistBuilderImpl();
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public BarBuilder bar() {
+        BarBuilder builder = new BarBuilderImpl();
+        registeredBuilders.add(builder);
+        return builder;
+    }
+
+    @Override
+    public ScatterBuilder scatter() {
+        ScatterBuilder builder = new ScatterBuilderImpl();
         registeredBuilders.add(builder);
         return builder;
     }
@@ -167,7 +229,7 @@ public class PlotImpl implements Plot {
         scriptLines.add("import numpy as np");
         scriptLines.add("import matplotlib as mpl");
         scriptLines.add("mpl.use('Agg')");
-        scriptLines.add("import matplotlib.pyplot as plt");
+        scriptLines.add("import matplotlib.pyplot as " + pplImportName);
         registeredBuilders.forEach(b -> scriptLines.add(b.build()));
         showBuilders.forEach(b -> scriptLines.add(b.build()));
         PyCommand command = new PyCommand(pythonConfig);
@@ -186,7 +248,7 @@ public class PlotImpl implements Plot {
             scriptLines.add("import matplotlib as mpl");
             scriptLines.add("mpl.use('Agg')");
         }
-        scriptLines.add("import matplotlib.pyplot as plt");
+        scriptLines.add("import matplotlib.pyplot as " + pplImportName);
         registeredBuilders.forEach(b -> scriptLines.add(b.build()));
 
         // show

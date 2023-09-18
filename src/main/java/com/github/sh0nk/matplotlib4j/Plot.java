@@ -11,9 +11,25 @@ public interface Plot {
         return new PlotImpl(PythonConfig.systemDefaultPythonConfig(), false);
     }
 
+    static Plot create(String mplImportName) {
+        return new PlotImpl(PythonConfig.systemDefaultPythonConfig(), false, mplImportName);
+    }
+
     static Plot create(PythonConfig pythonConfig) {
         return new PlotImpl(pythonConfig, false);
     }
+
+    static Plot create(PythonConfig pythonConfig, String mplImportName) {
+        return new PlotImpl(pythonConfig, false, mplImportName);
+    }
+
+    CustomBuilder py(String cmd);
+
+    CustomCmdBuilder cmd(String key);
+
+    CustomCmdBuilder cmd(String methodPrefix, String key, Boolean returns);
+
+    GridBuilder grid();
 
     LegendBuilder legend();
 
@@ -43,6 +59,10 @@ public interface Plot {
 
     TextBuilder text(double x, double y, String s);
 
+    AxLineBuilder axvline();
+
+    AxLineBuilder axhline();
+
     PlotBuilder plot();
 
     ContourBuilder contour();
@@ -50,6 +70,10 @@ public interface Plot {
     PColorBuilder pcolor();
 
     HistBuilder hist();
+
+    BarBuilder bar();
+
+    ScatterBuilder scatter();
 
     CLabelBuilder clabel(ContourBuilder contour);
 

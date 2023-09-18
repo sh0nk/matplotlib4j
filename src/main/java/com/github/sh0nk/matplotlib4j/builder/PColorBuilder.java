@@ -1,8 +1,9 @@
 package com.github.sh0nk.matplotlib4j.builder;
 
+import com.github.sh0nk.matplotlib4j.kwargs.KwArgsBuilder;
 import java.util.List;
 
-public interface PColorBuilder extends Builder {
+public interface PColorBuilder extends Builder, KwArgsBuilder<PColorBuilder> {
 
     /**
      * Equivalent to {@code pyplot.pcolor(C)}
