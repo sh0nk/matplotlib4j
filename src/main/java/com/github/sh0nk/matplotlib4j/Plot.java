@@ -11,8 +11,16 @@ public interface Plot {
         return new PlotImpl(PythonConfig.systemDefaultPythonConfig(), false);
     }
 
+    static Plot create(String mplImportName) {
+        return new PlotImpl(PythonConfig.systemDefaultPythonConfig(), false, mplImportName);
+    }
+
     static Plot create(PythonConfig pythonConfig) {
         return new PlotImpl(pythonConfig, false);
+    }
+
+    static Plot create(PythonConfig pythonConfig, String mplImportName) {
+        return new PlotImpl(pythonConfig, false, mplImportName);
     }
 
     CustomBuilder py(String cmd);

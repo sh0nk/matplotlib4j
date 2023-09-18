@@ -15,10 +15,16 @@ public class PlotImpl implements Plot {
 
     private final boolean dryRun;
     private final PythonConfig pythonConfig;
+    private final String pplImportName;
 
-    PlotImpl(PythonConfig pythonConfig, boolean dryRun) {
+    PlotImpl(PythonConfig pythonConfig, boolean dryRun, String pplImportName) {
         this.pythonConfig = pythonConfig;
         this.dryRun = dryRun;
+        this.pplImportName = pplImportName;
+    }
+
+    PlotImpl(PythonConfig pythonConfig, boolean dryRun) {
+        this(pythonConfig, dryRun, "plt");
     }
 
     @VisibleForTesting
@@ -223,7 +229,7 @@ public class PlotImpl implements Plot {
         scriptLines.add("import numpy as np");
         scriptLines.add("import matplotlib as mpl");
         scriptLines.add("mpl.use('Agg')");
-        scriptLines.add("import matplotlib.pyplot as plt");
+        scriptLines.add("import matplotlib.pyplot as " + pplImportName);
         registeredBuilders.forEach(b -> scriptLines.add(b.build()));
         showBuilders.forEach(b -> scriptLines.add(b.build()));
         PyCommand command = new PyCommand(pythonConfig);
@@ -242,7 +248,7 @@ public class PlotImpl implements Plot {
             scriptLines.add("import matplotlib as mpl");
             scriptLines.add("mpl.use('Agg')");
         }
-        scriptLines.add("import matplotlib.pyplot as plt");
+        scriptLines.add("import matplotlib.pyplot as " + pplImportName);
         registeredBuilders.forEach(b -> scriptLines.add(b.build()));
 
         // show
